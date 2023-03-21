@@ -70,7 +70,7 @@ const Datepicker: React.FC<Props> = ({
     value = null,
     onChange,
     useRange = false,
-    showFooter = false,
+    showFooter = true,
     showShortcuts = false,
     configs = null,
     asSingle = true,
@@ -104,9 +104,7 @@ const Datepicker: React.FC<Props> = ({
     const arrowRef = useRef<HTMLDivElement>(null);
 
     // State
-    const [firstDate, setFirstDate] = useState<dayjs.Dayjs>(
-        startFrom && dayjs(startFrom).isValid() ? dayjs(startFrom) : dayjs()
-    );
+    const [firstDate, setFirstDate] = useState<dayjs.Dayjs>(dayjs());
     const [secondDate, setSecondDate] = useState<dayjs.Dayjs>(nextMonth(firstDate));
     const [period, setPeriod] = useState<Period>({
         start: null,

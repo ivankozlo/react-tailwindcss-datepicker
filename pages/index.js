@@ -10,7 +10,6 @@ export default function Playground() {
     });
     const [primaryColor] = useState("red");
     const [useRange] = useState(false);
-    const [showFooter] = useState(true);
     const [showShortcuts] = useState(false);
     const [asSingle] = useState(true);
     const [placeholder] = useState("");
@@ -25,7 +24,6 @@ export default function Playground() {
     const [minDate] = useState("");
     const [maxDate] = useState("");
     const [disabledDates] = useState([]);
-    const [startFrom] = useState(dayjs());
     const [startWeekOn] = useState("mon");
 
     const handleChange = value => {
@@ -44,14 +42,10 @@ export default function Playground() {
                     primaryColor={primaryColor}
                     onChange={handleChange}
                     useRange={useRange}
-                    showFooter={showFooter}
                     showShortcuts={showShortcuts}
                     asSingle={asSingle}
                     placeholder={placeholder}
                     separator={separator}
-                    startFrom={
-                        startFrom.length && dayjs(startFrom).isValid() ? new Date(startFrom) : null
-                    }
                     i18n={i18n}
                     disabled={disabled}
                     inputClassName={inputClassName}
