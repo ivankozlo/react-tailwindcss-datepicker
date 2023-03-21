@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import Calendar from "../components/Calendar";
-import Footer from "../components/Footer";
 import Input from "../components/Input";
 import Shortcuts from "../components/Shortcuts";
 import { COLORS, DATE_FORMAT, DEFAULT_COLOR, LANGUAGE } from "../constants";
@@ -18,7 +17,7 @@ import {
     ClassNameParam
 } from "../types";
 
-import { Arrow, VerticalDash } from "./utils";
+import { VerticalDash } from "./utils";
 
 interface Props {
     primaryColor?: string;
@@ -91,7 +90,7 @@ const Datepicker: React.FC<Props> = ({
     disabledDates = null,
     inputId,
     inputName,
-    startWeekOn = "sun",
+    startWeekOn = "mon",
     classNames = undefined,
     label = "Period",
     emptyLabel = "Of",
@@ -128,8 +127,7 @@ const Datepicker: React.FC<Props> = ({
     // Functions
     const hideDatepicker = useCallback(() => {
         const div = calendarContainerRef.current;
-        const arrow = arrowRef.current;
-        if (arrow && div && div.classList.contains("block")) {
+        if (div && div.classList.contains("block")) {
             div.classList.remove("block");
             div.classList.remove("translate-y-0");
             div.classList.remove("opacity-1");
@@ -140,11 +138,6 @@ const Datepicker: React.FC<Props> = ({
                 div.classList.add("hidden");
                 div.classList.add("mb-2.5");
                 div.classList.add("mt-2.5");
-                arrow.classList.remove("-bottom-2");
-                arrow.classList.remove("border-r");
-                arrow.classList.remove("border-b");
-                arrow.classList.add("border-l");
-                arrow.classList.add("border-t");
             }, 300);
         }
     }, []);
@@ -389,16 +382,14 @@ const Datepicker: React.FC<Props> = ({
                     className="transition-all ease-out duration-300 absolute z-10 mt-[1px] text-sm lg:text-xs 2xl:text-sm translate-y-4 opacity-0 hidden"
                     ref={calendarContainerRef}
                 >
-                    <Arrow ref={arrowRef} />
-
-                    <div className="mt-2.5 shadow-sm border border-gray-300 px-1 py-0.5 bg-white dark:bg-slate-800 dark:text-white dark:border-slate-600 rounded-lg">
-                        <div className="flex flex-col lg:flex-row py-2">
+                    <div className="mt-2.5 shadow-sm border border-[#DDDDDD] py-0.5 bg-white rounded-[12px]">
+                        <div className="flex flex-col lg:flex-row">
                             {showShortcuts && <Shortcuts />}
 
                             <div
-                                className={`flex items-stretch flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-1.5 ${
-                                    showShortcuts ? "md:pl-2" : "md:pl-1"
-                                } pr-2 lg:pr-1`}
+                                className={
+                                    "flex items-stretch flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-1.5"
+                                }
                             >
                                 <Calendar
                                     date={firstDate}
@@ -425,8 +416,6 @@ const Datepicker: React.FC<Props> = ({
                                 )}
                             </div>
                         </div>
-
-                        {showFooter && <Footer />}
                     </div>
                 </div>
             </div>

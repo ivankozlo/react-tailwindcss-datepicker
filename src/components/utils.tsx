@@ -13,6 +13,7 @@ interface Button {
     disabled?: boolean;
     roundedFull?: boolean;
     padding?: string;
+    selected?: boolean;
 }
 
 export const DateIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => {
@@ -58,6 +59,38 @@ export const ChevronLeftIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) 
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
+        >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+    );
+};
+
+export const ChevronUpIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => {
+    return (
+        <svg
+            className={className}
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            transform="rotate(90)"
+        >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+    );
+};
+
+export const ChevronDownIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => {
+    return (
+        <svg
+            className={className}
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            transform="rotate(270)"
         >
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
         </svg>
@@ -170,21 +203,23 @@ export const RoundedButton: React.FC<Button> = ({
     children,
     onClick,
     roundedFull = false,
-    padding = "py-[0.55rem]"
+    padding = "py-[0.55rem]",
+    selected = false
 }) => {
     // Contexts
     const { primaryColor } = useContext(DatepickerContext);
 
     // Functions
     const getClassName = useCallback(() => {
-        const darkClass = "dark:text-white/70 dark:hover:bg-white/10 dark:focus:bg-white/10";
         const defaultClass = !roundedFull
-            ? `w-full tracking-wide ${darkClass} transition-all duration-300 px-3 ${padding} uppercase hover:bg-gray-100 rounded-md focus:ring-1`
-            : `${darkClass} transition-all duration-300 hover:bg-gray-100 rounded-full p-[0.45rem] focus:ring-1`;
+            ? `w-full tracking-wide  px-3 ${padding} hover:bg-[#F7F7F7] rounded-md focus:ring-1 ${
+                  selected ? "bg-[#D81825] hover:bg-[#D81825] text-white" : ""
+              }`
+            : "hover:bg-[#F7F7F7] rounded-full p-[0.45rem] focus:ring-1";
         const buttonFocusColor =
             BUTTON_COLOR.focus[primaryColor as keyof typeof BUTTON_COLOR.focus];
         return `${defaultClass} ${buttonFocusColor}`;
-    }, [padding, primaryColor, roundedFull]);
+    }, [padding, primaryColor, roundedFull, selected]);
 
     return (
         <button type="button" className={getClassName()} onClick={onClick}>

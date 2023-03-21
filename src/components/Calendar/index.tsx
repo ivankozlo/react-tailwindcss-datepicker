@@ -16,6 +16,8 @@ import {
 } from "../../helpers";
 import {
     ChevronLeftIcon,
+    ChevronUpIcon,
+    ChevronDownIcon,
     ChevronRightIcon,
     DoubleChevronLeftIcon,
     DoubleChevronRightIcon,
@@ -229,91 +231,53 @@ const Calendar: React.FC<Props> = ({
 
     return (
         <div className="w-full md:w-[297px] md:min-w-[297px]">
-            <div className="flex items-center space-x-1.5 border border-gray-300 rounded-md px-2 py-1.5">
-                {!showMonths && !showYears && (
-                    <div className="flex-none">
-                        <RoundedButton roundedFull={true} onClick={onClickPrevious}>
-                            <ChevronLeftIcon className="h-5 w-5" />
-                        </RoundedButton>
-                    </div>
-                )}
-
-                {showYears && (
-                    <div className="flex-none">
-                        <RoundedButton
-                            roundedFull={true}
-                            onClick={() => {
-                                setYear(year - 12);
-                            }}
-                        >
-                            <DoubleChevronLeftIcon className="h-5 w-5" />
-                        </RoundedButton>
-                    </div>
-                )}
-
-                <div className="flex flex-1 items-center space-x-1.5">
-                    <div className="w-1/2">
-                        <RoundedButton
-                            onClick={() => {
-                                setShowMonths(!showMonths);
-                                hideYears();
-                            }}
-                        >
-                            <>{calendarData.date.locale(i18n).format("MMM")}</>
-                        </RoundedButton>
-                    </div>
-
-                    <div className="w-1/2">
-                        <RoundedButton
-                            onClick={() => {
-                                setShowYears(!showYears);
-                                hideMonths();
-                            }}
-                        >
-                            <>{calendarData.date.year()}</>
-                        </RoundedButton>
+            <div className="flex items-center space-x-1.5 border-b border-[#DDDDDD] px-2 py-1.5">
+                <div className="flex flex-1 items-center justify-center">
+                    <div className="w-full flex justify-center text-[20px] leading-[25px] py-[10px] font-[600]">
+                        {calendarData.date.locale(i18n).format("MMMM")}
                     </div>
                 </div>
-
-                {showYears && (
-                    <div className="flex-none">
-                        <RoundedButton
-                            roundedFull={true}
-                            onClick={() => {
-                                setYear(year + 12);
-                            }}
-                        >
-                            <DoubleChevronRightIcon className="h-5 w-5" />
-                        </RoundedButton>
+                <div className="absolute right-[20px] top-[33px]">
+                    <div
+                        onClick={() => {
+                            setShowMonths(!showMonths);
+                            hideYears();
+                        }}
+                        className="cursor-pointer"
+                    >
+                        {showMonths ? (
+                            <ChevronUpIcon className="h-5 w-5" />
+                        ) : (
+                            <ChevronDownIcon className="h-5 w-5" />
+                        )}
                     </div>
-                )}
-
-                {!showMonths && !showYears && (
-                    <div className="flex-none">
-                        <RoundedButton roundedFull={true} onClick={onClickNext}>
-                            <ChevronRightIcon className="h-5 w-5" />
-                        </RoundedButton>
-                    </div>
-                )}
+                </div>
             </div>
 
-            <div className="px-0.5 sm:px-2 mt-0.5 min-h-[285px]">
-                {showMonths && <Months clickMonth={clickMonth} />}
+            {showMonths ? (
+                <div className="px-0.5 sm:px-2 min-h-[295px] flex items-center">
+                    <Months clickMonth={clickMonth} />
+                </div>
+            ) : (
+                <div className="px-0.5 sm:px-2 min-h-[295px]">
+                    {!showMonths && (
+                        <>
+                            <Week />
 
-                {showYears && <Years year={year} clickYear={clickYear} />}
-
-                {!showMonths && !showYears && (
-                    <>
-                        <Week />
-
-                        <Days
-                            calendarData={calendarData}
-                            onClickPreviousDays={clickPreviousDays}
-                            onClickDay={clickDay}
-                            onClickNextDays={clickNextDays}
-                        />
-                    </>
-                )}
+                            <Days
+                                calendarData={calendarData}
+                                onClickPreviousDays={clickPreviousDays}
+                                onClickDay={clickDay}
+                                onClickNextDays={clickNextDays}
+                            />
+                        </>
+                    )}
+                </div>
+            )}
+            <div className="flex items-center border-t border-[#DDDDDD] px-2 py-1.5">
+                <div className="flex flex-1 items-center justify-center">
+                    <div className="w-full flex justify-center leading-[25px] py-[10px]">TBD</div>
+                </div>
             </div>
         </div>
     );

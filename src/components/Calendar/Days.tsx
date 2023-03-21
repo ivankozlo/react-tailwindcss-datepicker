@@ -61,21 +61,21 @@ const Days: React.FC<Props> = ({
             if (dayjs(fullDay).isSame(period.start) && dayjs(fullDay).isSame(period.end)) {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                className = ` ${BG_COLOR["500"][primaryColor]} text-white font-medium rounded-full`;
+                className = "bg-[#D81825] text-white font-medium rounded-[6px] hover:bg-[#D81825]";
             } else if (dayjs(fullDay).isSame(period.start)) {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                className = ` ${BG_COLOR["500"][primaryColor]} text-white font-medium ${
+                className = `bg-[#D81825] text-white font-medium  hover:bg-[#D81825] ${
                     dayjs(fullDay).isSame(dayHover) && !period.end
-                        ? "rounded-full"
+                        ? "rounded-[6px]"
                         : "rounded-l-full"
                 }`;
             } else if (dayjs(fullDay).isSame(period.end)) {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                className = ` ${BG_COLOR["500"][primaryColor]} text-white font-medium ${
+                className = `bg-[#D81825] text-white font-medium hover:bg-[#D81825] ${
                     dayjs(fullDay).isSame(dayHover) && !period.start
-                        ? "rounded-full"
+                        ? "rounded-[6px]"
                         : "rounded-r-full"
                 }`;
             }
@@ -85,7 +85,7 @@ const Days: React.FC<Props> = ({
                 className: className
             };
         },
-        [calendarData.date, dayHover, period.end, period.start, primaryColor]
+        [calendarData.date, dayHover, period.end, period.start]
     );
 
     const hoverClassByDay = useCallback(
@@ -224,7 +224,8 @@ const Days: React.FC<Props> = ({
 
     const buttonClass = useCallback(
         (day: number, type: string) => {
-            const baseClass = "flex items-center justify-center w-12 h-12 lg:w-10 lg:h-10";
+            const baseClass =
+                "flex items-center justify-center w-12 h-12 lg:w-10 lg:h-10 hover:bg-[#F7F7F7] rounded-[6px]";
             return cn(
                 baseClass,
                 !activeDateData(day).active ? hoverClassByDay(day) : activeDateData(day).className,
@@ -276,7 +277,7 @@ const Days: React.FC<Props> = ({
                     type="button"
                     key={index}
                     disabled={isDateDisabled(item, "previous")}
-                    className="flex items-center justify-center text-gray-400 h-12 w-12 lg:w-10 lg:h-10"
+                    className="flex items-center justify-center text-gray-400 h-12 w-12 lg:w-10 lg:h-10 hover:bg-[#F7F7F7] rounded-[6px]"
                     onClick={() => onClickPreviousDays(item)}
                     onMouseOver={() => {
                         hoverDay(item, "previous");
@@ -308,7 +309,7 @@ const Days: React.FC<Props> = ({
                     type="button"
                     key={index}
                     disabled={isDateDisabled(index, "next")}
-                    className="flex items-center justify-center text-gray-400 h-12 w-12 lg:w-10 lg:h-10"
+                    className="flex items-center justify-center text-gray-400 h-12 w-12 lg:w-10 lg:h-10 hover:bg-[#F7F7F7] rounded-[6px]"
                     onClick={() => {
                         onClickNextDays(item);
                     }}

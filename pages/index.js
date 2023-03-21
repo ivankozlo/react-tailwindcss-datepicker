@@ -20,13 +20,13 @@ export default function Playground() {
     const [inputClassName] = useState("bg-white");
     const [containerClassName] = useState("");
     const [toggleClassName] = useState("");
-    const [displayFormat] = useState("YYYY-MM-DD");
+    const [displayFormat] = useState("DD.MM.YYYY");
     const [readOnly] = useState(false);
     const [minDate] = useState("");
     const [maxDate] = useState("");
     const [disabledDates] = useState([]);
-    const [startFrom] = useState("2023-03-01");
-    const [startWeekOn] = useState("");
+    const [startFrom] = useState(dayjs());
+    const [startWeekOn] = useState("mon");
 
     const handleChange = (value, e) => {
         setValue(value);

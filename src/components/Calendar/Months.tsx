@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 import React, { useContext } from "react";
 
 import { MONTHS } from "../../constants";
@@ -11,10 +12,11 @@ interface Props {
 }
 
 const Months: React.FC<Props> = ({ clickMonth }) => {
-    const { i18n } = useContext(DatepickerContext);
+    const { i18n, inputText } = useContext(DatepickerContext);
     loadLanguageModule(i18n);
+    dayjs.extend(customParseFormat);
     return (
-        <div className="w-full grid grid-cols-2 gap-2 mt-2">
+        <div className="w-full grid grid-cols-4 text-black min-h-[180px] gap-[10px]">
             {MONTHS.map(item => (
                 <RoundedButton
                     key={item}
@@ -22,6 +24,7 @@ const Months: React.FC<Props> = ({ clickMonth }) => {
                     onClick={() => {
                         clickMonth(item);
                     }}
+                    selected={item - 1 === dayjs(inputText, "DD.MM.YYYY").month()}
                 >
                     <>{dayjs(`2022-${item}-01`).locale(i18n).format("MMM")}</>
                 </RoundedButton>
