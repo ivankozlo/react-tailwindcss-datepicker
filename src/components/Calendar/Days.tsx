@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
 import React, { useCallback, useContext } from "react";
 
-import { BG_COLOR, TEXT_COLOR } from "../../constants";
+import { BG_COLOR } from "../../constants";
 import DatepickerContext from "../../contexts/DatepickerContext";
 import { formatDate, nextMonth, previousMonth, classNames as cn } from "../../helpers";
 
@@ -46,11 +46,10 @@ const Days: React.FC<Props> = ({
             const itemDate = `${calendarData.date.year()}-${calendarData.date.month() + 1}-${
                 item >= 10 ? item : "0" + item
             }`;
-            if (formatDate(dayjs()) === formatDate(dayjs(itemDate)))
-                return TEXT_COLOR["500"][primaryColor as keyof (typeof TEXT_COLOR)["500"]];
+            if (formatDate(dayjs()) === formatDate(dayjs(itemDate))) return "text-[#D81825]";
             return "";
         },
-        [calendarData.date, primaryColor]
+        [calendarData.date]
     );
 
     const activeDateData = useCallback(

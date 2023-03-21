@@ -41,7 +41,6 @@ const Calendar: React.FC<Props> = ({
         period,
         changePeriod,
         changeDayHover,
-        showFooter,
         changeDatepickerValue,
         hideDatepicker,
         asSingle,
@@ -153,15 +152,9 @@ const Calendar: React.FC<Props> = ({
                     newStart = condition ? fullDay : period.start;
                     newEnd = condition ? period.end : fullDay;
                 }
-
-                if (!showFooter) {
-                    if (newStart && newEnd) {
-                        chosePeriod(newStart, newEnd);
-                    }
-                }
             }
 
-            if (!(newEnd && newStart) || showFooter) {
+            if (!(newEnd && newStart)) {
                 changePeriod({
                     start: newStart,
                     end: newEnd
@@ -177,7 +170,6 @@ const Calendar: React.FC<Props> = ({
             hideDatepicker,
             period.end,
             period.start,
-            showFooter,
             input
         ]
     );

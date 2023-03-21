@@ -78,7 +78,7 @@ const DatepickerContext = createContext<DatepickerStore>({
         e: HTMLInputElement | null | undefined
         // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
     ) => {},
-    showFooter: false,
+    showFooter: true,
     value: null,
     i18n: LANGUAGE,
     disabled: false,
