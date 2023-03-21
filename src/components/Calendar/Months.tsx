@@ -24,7 +24,11 @@ const Months: React.FC<Props> = ({ clickMonth }) => {
                     onClick={() => {
                         clickMonth(item);
                     }}
-                    selected={item - 1 === dayjs(inputText, "DD.MM.YYYY").month()}
+                    selected={
+                        inputText
+                            ? item - 1 === dayjs(inputText, "DD.MM.YYYY").month()
+                            : item - 1 === dayjs().month()
+                    }
                 >
                     <>{dayjs(`2022-${item}-01`).locale(i18n).format("MMM")}</>
                 </RoundedButton>

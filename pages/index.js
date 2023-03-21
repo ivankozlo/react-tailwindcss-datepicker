@@ -28,9 +28,8 @@ export default function Playground() {
     const [startFrom] = useState(dayjs());
     const [startWeekOn] = useState("mon");
 
-    const handleChange = (value, e) => {
+    const handleChange = value => {
         setValue(value);
-        console.log(e);
         console.log("value", value);
     };
     return (

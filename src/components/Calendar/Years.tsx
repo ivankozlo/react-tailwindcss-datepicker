@@ -1,26 +1,28 @@
 import React from "react";
 
 import { generateArrayNumber } from "../../helpers";
-import { RoundedButton } from "../utils";
 
 interface Props {
-    year: number;
+    selectedYear: number;
+    startYear: number;
     clickYear: (data: number) => void;
 }
 
-const Years: React.FC<Props> = ({ year, clickYear }) => {
+const Years: React.FC<Props> = ({ selectedYear, startYear, clickYear }) => {
     return (
-        <div className="w-full grid grid-cols-2 gap-2 mt-2">
-            {generateArrayNumber(year, year + 11).map((item, index) => (
-                <RoundedButton
+        <div className="w-full flex flex-row">
+            {generateArrayNumber(startYear, startYear + 3).map((item, index) => (
+                <div
                     key={index}
-                    padding="py-3"
                     onClick={() => {
                         clickYear(item);
                     }}
+                    className={`cursor-pointer text-[14px] text-[#707070] p-2 font-[600] rounded-[6px] hover:bg-[#F7F7F7] ${
+                        item === selectedYear ? "text-[#D81825]" : ""
+                    }`}
                 >
                     <>{item}</>
-                </RoundedButton>
+                </div>
             ))}
         </div>
     );

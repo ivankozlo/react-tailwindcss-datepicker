@@ -14,15 +14,7 @@ import {
     nextMonth,
     previousMonth
 } from "../../helpers";
-import {
-    ChevronLeftIcon,
-    ChevronUpIcon,
-    ChevronDownIcon,
-    ChevronRightIcon,
-    DoubleChevronLeftIcon,
-    DoubleChevronRightIcon,
-    RoundedButton
-} from "../utils";
+import { ChevronLeftIcon, ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from "../utils";
 
 import Days from "./Days";
 import Months from "./Months";
@@ -61,8 +53,8 @@ const Calendar: React.FC<Props> = ({
 
     // States
     const [showMonths, setShowMonths] = useState(false);
-    const [showYears, setShowYears] = useState(false);
-    const [year, setYear] = useState(date.year());
+    const [currentYear, setCurrentYear] = useState(date.year());
+    const [startYear, setStartYear] = useState(date.year() - 3);
     // Functions
     const previous = useCallback(() => {
         return getLastDaysInMonth(
@@ -82,14 +74,6 @@ const Calendar: React.FC<Props> = ({
         );
     }, [current, date, previous]);
 
-    const hideMonths = useCallback(() => {
-        showMonths && setShowMonths(false);
-    }, [showMonths]);
-
-    const hideYears = useCallback(() => {
-        showYears && setShowYears(false);
-    }, [showYears]);
-
     const clickMonth = useCallback(
         (month: number) => {
             setTimeout(() => {
@@ -102,13 +86,17 @@ const Calendar: React.FC<Props> = ({
 
     const clickYear = useCallback(
         (year: number) => {
-            setTimeout(() => {
-                changeYear(year);
-                setShowYears(!showYears);
-            }, 250);
+            changeYear(year);
         },
-        [changeYear, showYears]
+        [changeYear]
     );
+
+    const nextYear = useCallback((year: number) => {
+        setStartYear(year + 1);
+    }, []);
+    const prevYear = useCallback((year: number) => {
+        setStartYear(year - 1);
+    }, []);
 
     const clickDay = useCallback(
         (day: number, month = date.month() + 1, year = date.year()) => {
@@ -214,7 +202,7 @@ const Calendar: React.FC<Props> = ({
 
     // UseEffects & UseLayoutEffect
     useEffect(() => {
-        setYear(date.year());
+        setCurrentYear(date.year());
     }, [date]);
 
     // Variables
@@ -241,7 +229,6 @@ const Calendar: React.FC<Props> = ({
                     <div
                         onClick={() => {
                             setShowMonths(!showMonths);
-                            hideYears();
                         }}
                         className="cursor-pointer"
                     >
@@ -255,7 +242,7 @@ const Calendar: React.FC<Props> = ({
             </div>
 
             {showMonths ? (
-                <div className="px-0.5 sm:px-2 min-h-[295px] flex items-center">
+                <div className="px-0.5 sm:px-2 min-h-[303px] flex items-center">
                     <Months clickMonth={clickMonth} />
                 </div>
             ) : (
@@ -276,7 +263,31 @@ const Calendar: React.FC<Props> = ({
             )}
             <div className="flex items-center border-t border-[#DDDDDD] px-2 py-1.5">
                 <div className="flex flex-1 items-center justify-center">
-                    <div className="w-full flex justify-center leading-[25px] py-[10px]">TBD</div>
+                    <div className="w-full flex justify-between leading-[25px] py-[10px]">
+                        <div
+                            onClick={() => {
+                                prevYear(startYear);
+                            }}
+                            className="cursor-pointer"
+                        >
+                            <ChevronLeftIcon className="h-5 w-5 ml-[10px]" />
+                        </div>
+                        <div
+                            onClick={() => {
+                                nextYear(startYear);
+                            }}
+                            className="cursor-pointer"
+                        >
+                            <ChevronRightIcon className="h-5 w-5 mr-[10px]" />
+                        </div>
+                    </div>
+                    <div className="absolute">
+                        <Years
+                            selectedYear={currentYear}
+                            startYear={startYear}
+                            clickYear={clickYear}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

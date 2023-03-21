@@ -33,9 +33,12 @@ const Week: React.FC = () => {
     }, [startWeekOn]);
 
     return (
-        <div className="grid grid-cols-7 border-b border-gray-300 py-2">
+        <div className="grid grid-cols-7 py-2 mt-2 uppercase">
             {DAYS.map(item => (
-                <div key={item} className="tracking-wide text-gray-500 text-center">
+                <div
+                    key={item}
+                    className="tracking-wide font-[600] text-[12px] text-[#1D1D1D] text-center"
+                >
                     {ucFirst(
                         shortString(
                             dayjs(`2022-11-${6 + (item + startDateModifier)}`)
