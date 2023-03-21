@@ -47,6 +47,9 @@ interface DatepickerStore {
     inputId?: string;
     inputName?: string;
     classNames?: ClassNamesTypeProp | undefined;
+    invalid?: boolean;
+    emptyLabel?: string;
+    fillLabel?: string;
 }
 
 const DatepickerContext = createContext<DatepickerStore>({
@@ -91,7 +94,10 @@ const DatepickerContext = createContext<DatepickerStore>({
     inputName: undefined,
     startWeekOn: START_WEEK,
     toggleIcon: undefined,
-    classNames: undefined
+    classNames: undefined,
+    invalid: false,
+    emptyLabel: "",
+    fillLabel: ""
 });
 
 export default DatepickerContext;

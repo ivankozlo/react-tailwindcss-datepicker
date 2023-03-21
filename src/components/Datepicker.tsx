@@ -59,17 +59,22 @@ interface Props {
     maxDate?: DateType | null;
     disabledDates?: DateRangeType[] | null;
     startWeekOn?: string | null;
+    label?: string;
+    emptyLabel?: string;
+    fillLabel?: string;
+    invalid?: boolean;
+    invalidText?: string;
 }
 
 const Datepicker: React.FC<Props> = ({
     primaryColor = "blue",
     value = null,
     onChange,
-    useRange = true,
+    useRange = false,
     showFooter = false,
     showShortcuts = false,
     configs = null,
-    asSingle = false,
+    asSingle = true,
     placeholder = null,
     separator = "~",
     startFrom = null,
@@ -87,7 +92,12 @@ const Datepicker: React.FC<Props> = ({
     inputId,
     inputName,
     startWeekOn = "sun",
-    classNames = undefined
+    classNames = undefined,
+    label = "Period",
+    emptyLabel = "Of",
+    fillLabel = "By",
+    invalid = false,
+    invalidText = ""
 }) => {
     // Ref
     const containerRef = useRef<HTMLDivElement>(null);
@@ -314,7 +324,11 @@ const Datepicker: React.FC<Props> = ({
             startWeekOn,
             classNames,
             onChange,
-            input: inputRef
+            input: inputRef,
+            emptyLabel,
+            fillLabel,
+            invalid,
+            invalidText
         };
     }, [
         asSingle,
@@ -345,7 +359,11 @@ const Datepicker: React.FC<Props> = ({
         inputName,
         startWeekOn,
         classNames,
-        inputRef
+        inputRef,
+        emptyLabel,
+        fillLabel,
+        invalid,
+        invalidText
     ]);
 
     return (
@@ -354,8 +372,19 @@ const Datepicker: React.FC<Props> = ({
                 className={`relative w-full text-gray-700 ${containerClassName}`}
                 ref={containerRef}
             >
+                <p
+                    className={`text-[14px] leading-[18px] mb-[8px] text-${
+                        disabled ? "[#C4C4C4]" : "[#707070]"
+                    }`}
+                >
+                    {label}
+                </p>
                 <Input setContextRef={setInputRef} />
-
+                {invalid && (
+                    <p className="text-[#BF1521] text-[12px] mt-[8px]">
+                        {invalidText || "Please specify the details!"}
+                    </p>
+                )}
                 <div
                     className="transition-all ease-out duration-300 absolute z-10 mt-[1px] text-sm lg:text-xs 2xl:text-sm translate-y-4 opacity-0 hidden"
                     ref={calendarContainerRef}

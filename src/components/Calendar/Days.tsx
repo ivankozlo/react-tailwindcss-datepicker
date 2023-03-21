@@ -101,9 +101,7 @@ const Days: React.FC<Props> = ({
                 if (dayjs(fullDay).isBetween(period.start, period.end, "day", "[)")) {
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
-                    return ` ${BG_COLOR["100"][primaryColor]} ${currentDateClass(
-                        day
-                    )} dark:bg-white/10`;
+                    return ` ${BG_COLOR["100"][primaryColor]} ${currentDateClass(day)}`;
                 }
             }
 
@@ -118,9 +116,7 @@ const Days: React.FC<Props> = ({
             if (period.start && dayjs(fullDay).isBetween(period.start, dayHover, "day", "[)")) {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                className = ` ${BG_COLOR["100"][primaryColor]} ${currentDateClass(
-                    day
-                )} dark:bg-white/10`;
+                className = ` ${BG_COLOR["100"][primaryColor]} ${currentDateClass(day)}`;
             }
 
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -128,9 +124,7 @@ const Days: React.FC<Props> = ({
             if (period.end && dayjs(fullDay).isBetween(dayHover, period.end, "day", "[)")) {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                className = ` ${BG_COLOR["100"][primaryColor]} ${currentDateClass(
-                    day
-                )} dark:bg-white/10`;
+                className = ` ${BG_COLOR["100"][primaryColor]} ${currentDateClass(day)}`;
             }
 
             if (dayHover === fullDay) {
