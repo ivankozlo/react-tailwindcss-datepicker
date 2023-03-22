@@ -1,6 +1,6 @@
 import React, { useCallback, useContext } from "react";
 
-import { BG_COLOR, BORDER_COLOR, BUTTON_COLOR, RING_COLOR } from "../constants";
+import { BG_COLOR, BUTTON_COLOR, RING_COLOR } from "../constants";
 import DatepickerContext from "../contexts/DatepickerContext";
 
 interface IconProps {
@@ -178,19 +178,12 @@ export const SecondaryButton: React.FC<Button> = ({ children, onClick, disabled 
 };
 
 export const PrimaryButton: React.FC<Button> = ({ children, onClick, disabled = false }) => {
-    // Contexts
-    const { primaryColor } = useContext(DatepickerContext);
-    const bgColor = BG_COLOR["500"][primaryColor as keyof (typeof BG_COLOR)["500"]];
-    const borderColor = BORDER_COLOR["500"][primaryColor as keyof (typeof BORDER_COLOR)["500"]];
-    const bgColorHover = BG_COLOR.hover[primaryColor as keyof typeof BG_COLOR.hover];
-    const ringColor = RING_COLOR.focus[primaryColor as keyof typeof RING_COLOR.focus];
-
     // Functions
     const getClassName = useCallback(() => {
-        return `w-full transition-all duration-300 ${bgColor} ${borderColor} text-white font-medium border px-4 py-2 text-sm rounded-md focus:ring-2 focus:ring-offset-2 ${bgColorHover} ${ringColor} ${
+        return `w-full transition-all duration-300 text-white font-medium border px-4 py-2 text-sm rounded-md focus:ring-2 focus:ring-offset-2 ${
             disabled ? " cursor-no-drop" : ""
         }`;
-    }, [bgColor, bgColorHover, borderColor, disabled, ringColor]);
+    }, [disabled]);
 
     return (
         <button type="button" className={getClassName()} onClick={onClick} disabled={disabled}>
@@ -203,7 +196,6 @@ export const RoundedButton: React.FC<Button> = ({
     children,
     onClick,
     roundedFull = false,
-    padding = "py-[0.55rem]",
     selected = false
 }) => {
     // Contexts
@@ -212,14 +204,14 @@ export const RoundedButton: React.FC<Button> = ({
     // Functions
     const getClassName = useCallback(() => {
         const defaultClass = !roundedFull
-            ? `w-full tracking-wide  px-3 ${padding} hover:bg-[#F7F7F7] rounded-md focus:ring-1 ${
-                  selected ? "bg-[#D81825] hover:bg-[#D81825] text-white" : ""
+            ? `w-full tracking-wide  px-3 rounded-md focus:ring-1 ${
+                  selected ? "bg-[#D81825] hover:bg-[#D81825] text-white" : "hover:bg-[#F7F7F7]"
               }`
             : "hover:bg-[#F7F7F7] rounded-full p-[0.45rem] focus:ring-1";
         const buttonFocusColor =
             BUTTON_COLOR.focus[primaryColor as keyof typeof BUTTON_COLOR.focus];
         return `${defaultClass} ${buttonFocusColor}`;
-    }, [padding, primaryColor, roundedFull, selected]);
+    }, [primaryColor, roundedFull, selected]);
 
     return (
         <button type="button" className={getClassName()} onClick={onClick}>

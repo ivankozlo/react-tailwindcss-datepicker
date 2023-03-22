@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
 import React, { useCallback, useContext } from "react";
 
-import { BG_COLOR } from "../../constants";
 import DatepickerContext from "../../contexts/DatepickerContext";
 import { formatDate, nextMonth, previousMonth, classNames as cn } from "../../helpers";
 
@@ -29,16 +28,8 @@ const Days: React.FC<Props> = ({
     onClickNextDays
 }) => {
     // Contexts
-    const {
-        primaryColor,
-        period,
-        changePeriod,
-        dayHover,
-        changeDayHover,
-        minDate,
-        maxDate,
-        disabledDates
-    } = useContext(DatepickerContext);
+    const { period, changePeriod, changeDayHover, minDate, maxDate, disabledDates } =
+        useContext(DatepickerContext);
 
     // Functions
     const currentDateClass = useCallback(
@@ -55,89 +46,24 @@ const Days: React.FC<Props> = ({
     const activeDateData = useCallback(
         (day: number) => {
             const fullDay = `${calendarData.date.year()}-${calendarData.date.month() + 1}-${day}`;
-            let className = "";
-
-            if (dayjs(fullDay).isSame(period.start) && dayjs(fullDay).isSame(period.end)) {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                className = "bg-[#D81825] text-white font-medium rounded-[6px] hover:bg-[#D81825]";
-            } else if (dayjs(fullDay).isSame(period.start)) {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                className = `bg-[#D81825] text-white font-medium  hover:bg-[#D81825] ${
-                    dayjs(fullDay).isSame(dayHover) && !period.end
-                        ? "rounded-[6px]"
-                        : "rounded-l-full"
-                }`;
-            } else if (dayjs(fullDay).isSame(period.end)) {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                className = `bg-[#D81825] text-white font-medium hover:bg-[#D81825] ${
-                    dayjs(fullDay).isSame(dayHover) && !period.start
-                        ? "rounded-[6px]"
-                        : "rounded-r-full"
-                }`;
-            }
+            const className =
+                "bg-[#D81825] text-white font-medium rounded-[6px] hover:bg-[#D81825]";
 
             return {
                 active: dayjs(fullDay).isSame(period.start) || dayjs(fullDay).isSame(period.end),
                 className: className
             };
         },
-        [calendarData.date, dayHover, period.end, period.start]
+        [calendarData.date, period.end, period.start]
     );
 
     const hoverClassByDay = useCallback(
         (day: number) => {
-            let className = currentDateClass(day);
-            const fullDay = `${calendarData.date.year()}-${calendarData.date.month() + 1}-${
-                day >= 10 ? day : "0" + day
-            }`;
-
-            if (period.start && period.end) {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                if (dayjs(fullDay).isBetween(period.start, period.end, "day", "[)")) {
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
-                    return ` ${BG_COLOR["100"][primaryColor]} ${currentDateClass(day)}`;
-                }
-            }
-
-            if (!dayHover) {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                return className;
-            }
-
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            if (period.start && dayjs(fullDay).isBetween(period.start, dayHover, "day", "[)")) {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                className = ` ${BG_COLOR["100"][primaryColor]} ${currentDateClass(day)}`;
-            }
-
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            if (period.end && dayjs(fullDay).isBetween(dayHover, period.end, "day", "[)")) {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                className = ` ${BG_COLOR["100"][primaryColor]} ${currentDateClass(day)}`;
-            }
-
-            if (dayHover === fullDay) {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                const bgColor = BG_COLOR["500"][primaryColor];
-                className = ` transition-all duration-500 text-white font-medium ${bgColor} ${
-                    period.start ? "rounded-r-full" : "rounded-l-full"
-                }`;
-            }
+            const className = currentDateClass(day) + " hover:bg-[#F7F7F7]";
 
             return className;
         },
-        [calendarData.date, currentDateClass, dayHover, period.end, period.start, primaryColor]
+        [currentDateClass]
     );
 
     const isDateTooEarly = useCallback(
@@ -224,7 +150,7 @@ const Days: React.FC<Props> = ({
     const buttonClass = useCallback(
         (day: number, type: string) => {
             const baseClass =
-                "flex items-center justify-center w-12 h-12 lg:w-10 lg:h-10 hover:bg-[#F7F7F7] rounded-[6px]";
+                "flex items-center justify-center w-12 h-12 lg:w-10 lg:h-10 rounded-[6px]";
             return cn(
                 baseClass,
                 !activeDateData(day).active ? hoverClassByDay(day) : activeDateData(day).className,
