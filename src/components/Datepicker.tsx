@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 
 import Calendar from "../components/Calendar";
 import Input from "../components/Input";
-import { COLORS, DATE_FORMAT, DEFAULT_COLOR, LANGUAGE } from "../constants";
+import { DATE_FORMAT, LANGUAGE } from "../constants";
 import DatepickerContext from "../contexts/DatepickerContext";
 import { formatDate, nextMonth, previousMonth } from "../helpers";
 import useOnClickOutside from "../hooks";
@@ -63,7 +63,7 @@ interface Props {
 }
 
 const Datepicker: React.FC<Props> = ({
-    primaryColor = "blue",
+    primaryColor = "#D81825",
     value = null,
     onChange,
     showFooter = true,
@@ -233,17 +233,10 @@ const Datepicker: React.FC<Props> = ({
         }
     }, [startFrom, value]);
 
-    // Variables
-    const colorPrimary = useMemo(() => {
-        if (COLORS.includes(primaryColor)) {
-            return primaryColor;
-        }
-        return DEFAULT_COLOR;
-    }, [primaryColor]);
     const contextValues = useMemo(() => {
         return {
             asSingle,
-            primaryColor: colorPrimary,
+            primaryColor,
             configs,
             calendarContainer: calendarContainerRef,
             arrowContainer: arrowRef,
@@ -284,7 +277,7 @@ const Datepicker: React.FC<Props> = ({
         };
     }, [
         asSingle,
-        colorPrimary,
+        primaryColor,
         configs,
         hideDatepicker,
         period,
