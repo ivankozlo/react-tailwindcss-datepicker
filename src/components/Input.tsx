@@ -44,7 +44,7 @@ const Input: React.FC<Props> = (e: Props) => {
             border-[#C4C4C4] bg-white border-2
             focus:border-[#0493F2] focus:ring-0
             hover:border-[#0493F2] hover:border-2 hover:cursor-pointer hover:bg-[#F5FBFF]
-            hover:disabled:border-[#C4C4C4] hover:disabled:bg-[#ffffff] hover:disabled:bg-[#F7F7F7] hover:disabled:border-[#DDDDDD]
+            hover:disabled:border-[#C4C4C4] hover:disabled:border-[#DDDDDD]
             disabled:border-[#DDDDDD] disabled:cursor-not-allowed disabled:bg-[#F7F7F7]
             active:ring-0 active:border-[#0493F2] active:border-2
             ${invalid && "border-[#BF1521]"}
@@ -128,6 +128,13 @@ const Input: React.FC<Props> = (e: Props) => {
                 onChange={() => {
                     // Do nothing
                 }}
+                style={
+                    invalid
+                        ? {
+                              borderColor: "#BF1521"
+                          }
+                        : {}
+                }
             />
             <div
                 onClick={() => {
@@ -142,25 +149,47 @@ const Input: React.FC<Props> = (e: Props) => {
                         disabled ? "text-[#C4C4C4]" : ""
                     }`}
                 >
-                    <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <g clipPath="url(#clip0_739_2084)">
-                            <path
-                                d="M16.6667 2.50004H15.8334V0.833374H14.1667V2.50004H5.83342V0.833374H4.16675V2.50004H3.33341C2.41675 2.50004 1.66675 3.25004 1.66675 4.16671V17.5C1.66675 18.4167 2.41675 19.1667 3.33341 19.1667H16.6667C17.5834 19.1667 18.3334 18.4167 18.3334 17.5V4.16671C18.3334 3.25004 17.5834 2.50004 16.6667 2.50004ZM16.6667 17.5H3.33341V6.66671H16.6667V17.5Z"
-                                fill="#4F4F4F"
-                            />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_739_2084">
-                                <rect width="20" height="20" fill="white" />
-                            </clipPath>
-                        </defs>
-                    </svg>
+                    {disabled ? (
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <g clipPath="url(#clip0_739_2102)">
+                                <path
+                                    d="M16.6667 2.50004H15.8334V0.833374H14.1667V2.50004H5.83342V0.833374H4.16675V2.50004H3.33341C2.41675 2.50004 1.66675 3.25004 1.66675 4.16671V17.5C1.66675 18.4167 2.41675 19.1667 3.33341 19.1667H16.6667C17.5834 19.1667 18.3334 18.4167 18.3334 17.5V4.16671C18.3334 3.25004 17.5834 2.50004 16.6667 2.50004ZM16.6667 17.5H3.33341V6.66671H16.6667V17.5Z"
+                                    fill="#C4C4C4"
+                                />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_739_2102">
+                                    <rect width="20" height="20" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    ) : (
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <g clipPath="url(#clip0_739_2084)">
+                                <path
+                                    d="M16.6667 2.50004H15.8334V0.833374H14.1667V2.50004H5.83342V0.833374H4.16675V2.50004H3.33341C2.41675 2.50004 1.66675 3.25004 1.66675 4.16671V17.5C1.66675 18.4167 2.41675 19.1667 3.33341 19.1667H16.6667C17.5834 19.1667 18.3334 18.4167 18.3334 17.5V4.16671C18.3334 3.25004 17.5834 2.50004 16.6667 2.50004ZM16.6667 17.5H3.33341V6.66671H16.6667V17.5Z"
+                                    fill="#4F4F4F"
+                                />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_739_2084">
+                                    <rect width="20" height="20" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    )}
                 </span>
                 {emptyLabel && inputText === "" && (
                     <span
