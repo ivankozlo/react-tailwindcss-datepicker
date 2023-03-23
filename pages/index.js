@@ -20,7 +20,7 @@ export default function Playground() {
     const [containerClassName] = useState("");
     const [toggleClassName] = useState("");
     const [displayFormat] = useState("DD.MM.YYYY");
-    const [readOnly] = useState(false);
+    const [readOnly] = useState(true);
     const [minDate] = useState("");
     const [maxDate] = useState("");
     const [disabledDates] = useState([]);
