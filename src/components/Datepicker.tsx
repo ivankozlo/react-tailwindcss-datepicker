@@ -16,8 +16,6 @@ import {
     ClassNameParam
 } from "../types";
 
-import { VerticalDash } from "./utils";
-
 interface Props {
     primaryColor?: string;
     value: DateValueType;
@@ -68,7 +66,6 @@ const Datepicker: React.FC<Props> = ({
     primaryColor = "blue",
     value = null,
     onChange,
-    useRange = false,
     showFooter = true,
     configs = null,
     asSingle = true,
@@ -174,40 +171,6 @@ const Datepicker: React.FC<Props> = ({
     );
     /* End First */
 
-    /* Start Second */
-    const secondGotoDate = useCallback(
-        (date: dayjs.Dayjs) => {
-            const newDate = dayjs(formatDate(date, displayFormat));
-            const reformatDate = dayjs(formatDate(firstDate, displayFormat));
-            if (newDate.isSame(reformatDate) || newDate.isBefore(reformatDate)) {
-                setFirstDate(previousMonth(date));
-            }
-            setSecondDate(date);
-        },
-        [firstDate, displayFormat]
-    );
-
-    const previousMonthSecond = useCallback(() => {
-        secondGotoDate(previousMonth(secondDate));
-    }, [secondDate, secondGotoDate]);
-
-    const nextMonthSecond = useCallback(() => {
-        setSecondDate(nextMonth(secondDate));
-    }, [secondDate]);
-
-    const changeSecondMonth = useCallback(
-        (month: number) => {
-            secondGotoDate(dayjs(`${secondDate.year()}-${month < 10 ? "0" : ""}${month}-01`));
-        },
-        [secondDate, secondGotoDate]
-    );
-
-    const changeSecondYear = useCallback(
-        (year: number) => {
-            secondGotoDate(dayjs(`${year}-${secondDate.month() + 1}-01`));
-        },
-        [secondDate, secondGotoDate]
-    );
     /* End Second */
 
     // UseEffects & UseLayoutEffect
@@ -392,22 +355,6 @@ const Datepicker: React.FC<Props> = ({
                                     changeMonth={changeFirstMonth}
                                     changeYear={changeFirstYear}
                                 />
-
-                                {useRange && (
-                                    <>
-                                        <div className="flex items-center">
-                                            <VerticalDash />
-                                        </div>
-
-                                        <Calendar
-                                            date={secondDate}
-                                            onClickPrevious={previousMonthSecond}
-                                            onClickNext={nextMonthSecond}
-                                            changeMonth={changeSecondMonth}
-                                            changeYear={changeSecondYear}
-                                        />
-                                    </>
-                                )}
                             </div>
                         </div>
                     </div>

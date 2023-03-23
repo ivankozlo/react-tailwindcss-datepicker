@@ -1,6 +1,6 @@
 import React, { useCallback, useContext } from "react";
 
-import { BG_COLOR, BUTTON_COLOR, RING_COLOR } from "../constants";
+import { BG_COLOR, RING_COLOR } from "../constants";
 import DatepickerContext from "../contexts/DatepickerContext";
 
 interface IconProps {
@@ -198,20 +198,15 @@ export const RoundedButton: React.FC<Button> = ({
     roundedFull = false,
     selected = false
 }) => {
-    // Contexts
-    const { primaryColor } = useContext(DatepickerContext);
-
     // Functions
     const getClassName = useCallback(() => {
         const defaultClass = !roundedFull
             ? `w-full tracking-wide select-none px-3 rounded-md focus:ring-1 ${
                   selected ? "bg-[#D81825] hover:bg-[#D81825] text-white" : "hover:bg-[#F7F7F7]"
               }`
-            : "hover:bg-[#F7F7F7] rounded-full p-[0.45rem] focus:ring-1";
-        const buttonFocusColor =
-            BUTTON_COLOR.focus[primaryColor as keyof typeof BUTTON_COLOR.focus];
-        return `${defaultClass} ${buttonFocusColor}`;
-    }, [primaryColor, roundedFull, selected]);
+            : "hover:bg-[#F7F7F7] rounded-full p-[0.45rem] focus:ring-0";
+        return `${defaultClass}`;
+    }, [roundedFull, selected]);
 
     return (
         <button type="button" className={getClassName()} onClick={onClick}>

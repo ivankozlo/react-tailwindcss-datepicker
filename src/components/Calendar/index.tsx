@@ -213,11 +213,11 @@ const Calendar: React.FC<Props> = ({
         <div className="w-full md:w-[297px] md:min-w-[297px]">
             <div className="flex items-center space-x-1.5 border-b border-[#DDDDDD] px-2 py-1.5">
                 <div className="flex flex-1 items-center justify-center">
-                    <div className="w-full flex justify-center text-[20px] leading-[25px] py-[10px] font-[600]">
+                    <div className="w-full flex justify-center text-[20px] leading-[25px] select-none py-[5px] font-[600]">
                         {calendarData.date.locale(i18n).format("MMMM")}
                     </div>
                 </div>
-                <div className="absolute right-[20px] top-[33px]">
+                <div className="absolute right-[20px] top-[29px]">
                     <div
                         onClick={() => {
                             setShowMonths(!showMonths);
