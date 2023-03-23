@@ -28,26 +28,13 @@ const Days: React.FC<Props> = ({
     onClickNextDays
 }) => {
     // Contexts
-    const { period, changePeriod, changeDayHover, minDate, maxDate, disabledDates } =
+    const { period, changePeriod, changeDayHover, minDate, maxDate, disabledDates, primaryColor } =
         useContext(DatepickerContext);
-
-    // Functions
-    const currentDateClass = useCallback(
-        (item: number) => {
-            const itemDate = `${calendarData.date.year()}-${calendarData.date.month() + 1}-${
-                item >= 10 ? item : "0" + item
-            }`;
-            if (formatDate(dayjs()) === formatDate(dayjs(itemDate))) return "text-[#D81825]";
-            return "";
-        },
-        [calendarData.date]
-    );
 
     const activeDateData = useCallback(
         (day: number) => {
             const fullDay = `${calendarData.date.year()}-${calendarData.date.month() + 1}-${day}`;
-            const className =
-                "bg-[#D81825] text-white font-medium rounded-[6px] hover:bg-[#D81825]";
+            const className = "text-white font-medium rounded-[6px]";
 
             return {
                 active: dayjs(fullDay).isSame(period.start) || dayjs(fullDay).isSame(period.end),
@@ -57,14 +44,10 @@ const Days: React.FC<Props> = ({
         [calendarData.date, period.end, period.start]
     );
 
-    const hoverClassByDay = useCallback(
-        (day: number) => {
-            const className = currentDateClass(day) + " hover:bg-[#F7F7F7]";
-
-            return className;
-        },
-        [currentDateClass]
-    );
+    const hoverClassByDay = useCallback(() => {
+        const className = " hover:bg-[#F7F7F7]";
+        return className;
+    }, []);
 
     const isDateTooEarly = useCallback(
         (day: number, type: string) => {
@@ -153,11 +136,38 @@ const Days: React.FC<Props> = ({
                 "flex items-center justify-center w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] rounded-[6px]";
             return cn(
                 baseClass,
-                !activeDateData(day).active ? hoverClassByDay(day) : activeDateData(day).className,
+                !activeDateData(day).active ? hoverClassByDay() : activeDateData(day).className,
                 isDateDisabled(day, type) && "line-through"
             );
         },
         [activeDateData, hoverClassByDay, isDateDisabled]
+    );
+
+    const buttonStyles = useCallback(
+        (day: number) => {
+            const CUSTOM_BACKGROUND_STYLES = {
+                color: "#FFFFFF",
+                backgroundColor: primaryColor,
+
+                ":hover": {
+                    backgroundColor: primaryColor
+                }
+            };
+            const CUSTOM_TEXT_STYLES = {
+                color: primaryColor
+            };
+            const itemDate = `${calendarData.date.year()}-${calendarData.date.month() + 1}-${
+                day >= 10 ? day : "0" + day
+            }`;
+            if (formatDate(dayjs()) === formatDate(dayjs(itemDate))) {
+                return CUSTOM_TEXT_STYLES;
+            }
+            if (activeDateData(day).active) {
+                return CUSTOM_BACKGROUND_STYLES;
+            }
+            return {};
+        },
+        [activeDateData, calendarData.date, primaryColor]
     );
 
     const hoverDay = useCallback(
@@ -224,6 +234,7 @@ const Days: React.FC<Props> = ({
                     onMouseOver={() => {
                         hoverDay(item, "current");
                     }}
+                    style={buttonStyles(item)}
                 >
                     {item}
                 </button>

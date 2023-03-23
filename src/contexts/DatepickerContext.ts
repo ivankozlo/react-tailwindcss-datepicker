@@ -54,7 +54,7 @@ interface DatepickerStore {
 
 const DatepickerContext = createContext<DatepickerStore>({
     input: undefined,
-    primaryColor: "blue",
+    primaryColor: "",
     calendarContainer: null,
     arrowContainer: null,
     // eslint-disable-next-line @typescript-eslint/no-empty-function

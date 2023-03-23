@@ -8,7 +8,7 @@ export default function Playground() {
         startDate: null,
         endDate: null
     });
-    const [primaryColor] = useState("red");
+    const [primaryColor] = useState("#00BB00");
     const [useRange] = useState(false);
     const [showShortcuts] = useState(false);
     const [asSingle] = useState(true);

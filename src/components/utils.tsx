@@ -201,15 +201,27 @@ export const RoundedButton: React.FC<Button> = ({
     // Functions
     const getClassName = useCallback(() => {
         const defaultClass = !roundedFull
-            ? `w-full text-[14px] tracking-wide select-none px-3 rounded-md focus:ring-1 ${
-                  selected ? "bg-[#D81825] hover:bg-[#D81825] text-white" : "hover:bg-[#F7F7F7]"
-              }`
+            ? "w-full text-[14px] tracking-wide select-none px-3 rounded-md focus:ring-1 hover:bg-[#F7F7F7]"
             : "hover:bg-[#F7F7F7] rounded-full p-[0.45rem] focus:ring-0";
         return `${defaultClass}`;
-    }, [roundedFull, selected]);
+    }, [roundedFull]);
 
+    const { primaryColor } = useContext(DatepickerContext);
+    const CUSTOM_STYLES = {
+        color: "#FFFFFF",
+        backgroundColor: primaryColor,
+
+        ":hover": {
+            backgroundColor: primaryColor
+        }
+    };
     return (
-        <button type="button" className={getClassName()} onClick={onClick}>
+        <button
+            type="button"
+            className={getClassName()}
+            onClick={onClick}
+            style={selected ? CUSTOM_STYLES : {}}
+        >
             {children}
         </button>
     );
