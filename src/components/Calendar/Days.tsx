@@ -202,7 +202,7 @@ const Days: React.FC<Props> = ({
                     type="button"
                     key={index}
                     disabled={isDateDisabled(item, "previous")}
-                    className="flex items-center justify-center select-none text-gray-400 w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] hover:bg-[#F7F7F7] rounded-[6px]"
+                    className="flex items-center justify-center text-[14px] select-none text-gray-400 w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] hover:bg-[#F7F7F7] rounded-[6px]"
                     onClick={() => onClickPreviousDays(item)}
                     onMouseOver={() => {
                         hoverDay(item, "previous");
@@ -217,7 +217,7 @@ const Days: React.FC<Props> = ({
                     type="button"
                     key={index}
                     disabled={isDateDisabled(item, "current")}
-                    className={`select-none ${buttonClass(item, "current")}`}
+                    className={`text-[14px] select-none ${buttonClass(item, "current")}`}
                     onClick={() => {
                         onClickDay(item);
                     }}
@@ -234,7 +234,7 @@ const Days: React.FC<Props> = ({
                     type="button"
                     key={index}
                     disabled={isDateDisabled(index, "next")}
-                    className="flex items-center justify-center text-gray-400 w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] select-none hover:bg-[#F7F7F7] rounded-[6px]"
+                    className="flex items-center text-[14px] justify-center text-gray-400 w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] select-none hover:bg-[#F7F7F7] rounded-[6px]"
                     onClick={() => {
                         onClickNextDays(item);
                     }}
