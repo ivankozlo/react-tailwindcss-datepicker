@@ -37,7 +37,7 @@ const Week: React.FC = () => {
             {DAYS.map(item => (
                 <div
                     key={item}
-                    className="tracking-wide font-[600] text-[12px] text-[#1D1D1D] text-center"
+                    className="tracking-wide font-[600] select-none text-[12px] text-[#1D1D1D] text-center"
                 >
                     {ucFirst(
                         shortString(

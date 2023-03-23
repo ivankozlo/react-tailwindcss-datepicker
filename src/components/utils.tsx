@@ -204,7 +204,7 @@ export const RoundedButton: React.FC<Button> = ({
     // Functions
     const getClassName = useCallback(() => {
         const defaultClass = !roundedFull
-            ? `w-full tracking-wide  px-3 rounded-md focus:ring-1 ${
+            ? `w-full tracking-wide select-none px-3 rounded-md focus:ring-1 ${
                   selected ? "bg-[#D81825] hover:bg-[#D81825] text-white" : "hover:bg-[#F7F7F7]"
               }`
             : "hover:bg-[#F7F7F7] rounded-full p-[0.45rem] focus:ring-1";

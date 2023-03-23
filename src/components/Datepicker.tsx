@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 
 import Calendar from "../components/Calendar";
 import Input from "../components/Input";
-import Shortcuts from "../components/Shortcuts";
 import { COLORS, DATE_FORMAT, DEFAULT_COLOR, LANGUAGE } from "../constants";
 import DatepickerContext from "../contexts/DatepickerContext";
 import { formatDate, nextMonth, previousMonth } from "../helpers";
@@ -71,7 +70,6 @@ const Datepicker: React.FC<Props> = ({
     onChange,
     useRange = false,
     showFooter = true,
-    showShortcuts = false,
     configs = null,
     asSingle = true,
     placeholder = null,
@@ -93,8 +91,8 @@ const Datepicker: React.FC<Props> = ({
     startWeekOn = "mon",
     classNames = undefined,
     label = "Period",
-    emptyLabel = "Of",
-    fillLabel = "By",
+    emptyLabel = "",
+    fillLabel = "",
     invalid = false,
     invalidText = ""
 }) => {
@@ -364,7 +362,7 @@ const Datepicker: React.FC<Props> = ({
                 ref={containerRef}
             >
                 <p
-                    className={`text-[14px] leading-[18px] mb-[8px] text-${
+                    className={`text-[14px] leading-[18px] select-none mb-[8px] text-${
                         disabled ? "[#C4C4C4]" : "[#707070]"
                     }`}
                 >
@@ -382,8 +380,6 @@ const Datepicker: React.FC<Props> = ({
                 >
                     <div className="mt-2.5 shadow-sm border border-[#DDDDDD] py-0.5 bg-white rounded-[12px]">
                         <div className="flex flex-col lg:flex-row">
-                            {showShortcuts && <Shortcuts />}
-
                             <div
                                 className={
                                     "flex items-stretch flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-1.5"

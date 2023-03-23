@@ -1,5 +1,5 @@
+import Image from "next/image";
 import React, { useCallback, useContext, useEffect, useRef } from "react";
-import { AiTwotoneCalendar } from "react-icons/ai";
 
 import DatepickerContext from "../contexts/DatepickerContext";
 
@@ -41,7 +41,7 @@ const Input: React.FC<Props> = (e: Props) => {
             return classNames?.input(input);
         }
         const classNameOverload = typeof inputClassName === "string" ? inputClassName : "";
-        return `relative p-[10px] pl-[50px] w-full rounded-[3px] tracking-wide font-light text-sm placeholder-gray-400
+        return `relative p-[10px] pl-[40px] w-full h-[40px] rounded-[3px] tracking-wide font-light text-sm placeholder-gray-400
             border-[#C4C4C4] bg-white border-2
             focus:border-[#0493F2] focus:ring-0
             hover:border-[#0493F2] hover:border-2 hover:cursor-pointer hover:bg-[#F5FBFF]
@@ -136,18 +136,18 @@ const Input: React.FC<Props> = (e: Props) => {
                         showCalendar();
                     }
                 }}
-                className="cursor-pointer"
+                className="cursor-pointer pointer-events-none"
             >
                 <span
-                    className={`absolute p-0 m-0 top-[7px] left-[15px] text-[30px] ${
+                    className={`absolute p-0 m-0 top-[10px] left-[17px] ${
                         disabled ? "text-[#C4C4C4]" : ""
                     }`}
                 >
-                    <AiTwotoneCalendar />
+                    <Image src="/assets/calendar.png" alt="calendar" width={20} height={20} />
                 </span>
                 {emptyLabel && inputText === "" && (
                     <span
-                        className={`absolute text-[15px] left-[52px] top-[10px] ${
+                        className={`absolute text-[12px] left-[44px] top-[11px] ${
                             disabled ? "text-[#C4C4C4]" : "text-[#8E8E8E]"
                         }`}
                     >
@@ -155,12 +155,25 @@ const Input: React.FC<Props> = (e: Props) => {
                     </span>
                 )}
                 <div
-                    className={`absolute flex flex-col top-0 text-[12px] left-[52px] ${
+                    className={`absolute flex flex-col top-0 text-[12px] left-[44px] ${
                         disabled ? "text-[#C4C4C4]" : "text-[#8E8E8E]"
                     }`}
                 >
-                    {fillLabel && inputText !== "" && <span className="mt-[1px]">{fillLabel}</span>}
-                    <span className="text-[16px]">{inputText}</span>
+                    {fillLabel && inputText !== "" && (
+                        <>
+                            <span className="absolute top-[2px] leading-[15px]">{fillLabel}</span>
+                            <span className="absolute top-[16px] text-[15px] font-[400]">
+                                {inputText}
+                            </span>
+                        </>
+                    )}
+                    {!fillLabel && inputText !== "" && (
+                        <>
+                            <span className="absolute top-[9px] text-[15px] font-[400]">
+                                {inputText}
+                            </span>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

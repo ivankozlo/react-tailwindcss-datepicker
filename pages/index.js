@@ -63,8 +63,8 @@ export default function Playground() {
                     classNames={"bg-white"}
                     invalid={false}
                     invalidText={"Please specify the details"}
-                    emptyLabel={"Of"}
-                    fillLabel={"By"}
+                    emptyLabel={""}
+                    fillLabel={""}
                 />
             </div>
         </div>
