@@ -21,7 +21,7 @@ export default function Playground() {
     const [toggleClassName] = useState("");
     const [displayFormat] = useState("DD.MM.YYYY");
     const [readOnly] = useState(true);
-    const [minDate] = useState("");
+    const [minDate] = useState("2023-03-22");
     const [maxDate] = useState("");
     const [disabledDates] = useState([]);
     const [startWeekOn] = useState("mon");
