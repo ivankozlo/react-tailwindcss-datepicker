@@ -11,9 +11,9 @@ interface Props {
 }
 
 const Years: React.FC<Props> = ({ selectedYear, startYear, clickYear }) => {
-    const { primaryColor } = useContext(DatepickerContext);
+    const { accentColor } = useContext(DatepickerContext);
     const SELECTED_YEAR_STYLE = {
-        color: primaryColor
+        color: accentColor
     };
     return (
         <div className="w-full flex flex-row">

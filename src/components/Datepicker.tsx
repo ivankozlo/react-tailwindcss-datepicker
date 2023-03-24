@@ -17,7 +17,7 @@ import {
 } from "../types";
 
 interface Props {
-    primaryColor?: string;
+    accentColor?: string;
     value: DateValueType;
     onChange: (value: DateValueType, e?: HTMLInputElement | null | undefined) => void;
     useRange?: boolean;
@@ -63,7 +63,7 @@ interface Props {
 }
 
 const Datepicker: React.FC<Props> = ({
-    primaryColor = "#D81825",
+    accentColor = "#D81825",
     value = null,
     onChange,
     showFooter = true,
@@ -236,7 +236,7 @@ const Datepicker: React.FC<Props> = ({
     const contextValues = useMemo(() => {
         return {
             asSingle,
-            primaryColor,
+            accentColor,
             configs,
             calendarContainer: calendarContainerRef,
             arrowContainer: arrowRef,
@@ -277,7 +277,7 @@ const Datepicker: React.FC<Props> = ({
         };
     }, [
         asSingle,
-        primaryColor,
+        accentColor,
         configs,
         hideDatepicker,
         period,

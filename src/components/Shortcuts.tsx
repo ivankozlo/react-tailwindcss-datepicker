@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import React, { useCallback, useContext, useMemo } from "react";
 
-import { TEXT_COLOR } from "../constants";
 import DEFAULT_SHORTCUTS from "../constants/shortcuts";
 import DatepickerContext from "../contexts/DatepickerContext";
 import { Period, ShortcutsItem } from "../types";
@@ -15,7 +14,6 @@ interface ItemTemplateProps {
 // eslint-disable-next-line react/display-name
 const ItemTemplate = React.memo((props: ItemTemplateProps) => {
     const {
-        primaryColor,
         period,
         changePeriod,
         changeInputText,
@@ -28,10 +26,8 @@ const ItemTemplate = React.memo((props: ItemTemplateProps) => {
 
     // Functions
     const getClassName: () => string = useCallback(() => {
-        const textColor = TEXT_COLOR["600"][primaryColor as keyof (typeof TEXT_COLOR)["600"]];
-        const textColorHover = TEXT_COLOR.hover[primaryColor as keyof typeof TEXT_COLOR.hover];
-        return `whitespace-nowrap w-1/2 md:w-1/3 lg:w-auto transition-all duration-300 hover:bg-gray-100 dark:hover:bg-white/10 p-2 rounded cursor-pointer ${textColor} ${textColorHover}`;
-    }, [primaryColor]);
+        return "";
+    }, []);
 
     const chosePeriod = useCallback(
         (item: Period) => {

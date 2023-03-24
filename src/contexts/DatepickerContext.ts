@@ -15,7 +15,7 @@ import {
 interface DatepickerStore {
     input?: React.RefObject<HTMLInputElement>;
     asSingle?: boolean;
-    primaryColor: string;
+    accentColor: string;
     configs?: Configs | null;
     calendarContainer: React.RefObject<HTMLDivElement> | null;
     arrowContainer: React.RefObject<HTMLDivElement> | null;
@@ -54,7 +54,7 @@ interface DatepickerStore {
 
 const DatepickerContext = createContext<DatepickerStore>({
     input: undefined,
-    primaryColor: "",
+    accentColor: "",
     calendarContainer: null,
     arrowContainer: null,
     // eslint-disable-next-line @typescript-eslint/no-empty-function

@@ -162,13 +162,13 @@ export const Arrow = React.forwardRef<HTMLDivElement, {}>((props, ref) => {
 
 export const SecondaryButton: React.FC<Button> = ({ children, onClick, disabled = false }) => {
     // Contexts
-    const { primaryColor } = useContext(DatepickerContext);
+    const { accentColor } = useContext(DatepickerContext);
 
     // Functions
     const getClassName: () => string = useCallback(() => {
-        const ringColor = RING_COLOR.focus[primaryColor as keyof typeof RING_COLOR.focus];
+        const ringColor = RING_COLOR.focus[accentColor as keyof typeof RING_COLOR.focus];
         return `w-full transition-all duration-300 bg-white dark:text-gray-700 font-medium border border-gray-300 px-4 py-2 text-sm rounded-md focus:ring-2 focus:ring-offset-2 hover:bg-gray-50 ${ringColor}`;
-    }, [primaryColor]);
+    }, [accentColor]);
 
     return (
         <button type="button" className={getClassName()} onClick={onClick} disabled={disabled}>
@@ -206,13 +206,13 @@ export const RoundedButton: React.FC<Button> = ({
         return `${defaultClass}`;
     }, [roundedFull]);
 
-    const { primaryColor } = useContext(DatepickerContext);
+    const { accentColor } = useContext(DatepickerContext);
     const CUSTOM_STYLES = {
         color: "#FFFFFF",
-        backgroundColor: primaryColor,
+        backgroundColor: accentColor,
 
         ":hover": {
-            backgroundColor: primaryColor
+            backgroundColor: accentColor
         }
     };
     return (
@@ -229,8 +229,8 @@ export const RoundedButton: React.FC<Button> = ({
 
 export const VerticalDash = () => {
     // Contexts
-    const { primaryColor } = useContext(DatepickerContext);
-    const bgColor = BG_COLOR["500"][primaryColor as keyof (typeof BG_COLOR)["500"]];
+    const { accentColor } = useContext(DatepickerContext);
+    const bgColor = BG_COLOR["500"][accentColor as keyof (typeof BG_COLOR)["500"]];
 
     return <div className={`bg-blue-500 h-7 w-1 rounded-full hidden md:block ${bgColor}`} />;
 };

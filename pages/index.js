@@ -8,7 +8,7 @@ export default function Playground() {
         startDate: null,
         endDate: null
     });
-    const [primaryColor] = useState("#00AABB");
+    const [accentColor] = useState("#AA00CC");
     const [useRange] = useState(false);
     const [showShortcuts] = useState(false);
     const [asSingle] = useState(true);
@@ -39,7 +39,7 @@ export default function Playground() {
             <div className="max-w-md mx-auto my-4">
                 <Datepicker
                     value={value}
-                    primaryColor={primaryColor}
+                    accentColor={accentColor}
                     onChange={handleChange}
                     useRange={useRange}
                     showShortcuts={showShortcuts}

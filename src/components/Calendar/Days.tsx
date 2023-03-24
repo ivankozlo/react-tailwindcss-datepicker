@@ -28,7 +28,7 @@ const Days: React.FC<Props> = ({
     onClickNextDays
 }) => {
     // Contexts
-    const { period, changePeriod, changeDayHover, minDate, maxDate, disabledDates, primaryColor } =
+    const { period, changePeriod, changeDayHover, minDate, maxDate, disabledDates, accentColor } =
         useContext(DatepickerContext);
 
     const activeDateData = useCallback(
@@ -147,14 +147,14 @@ const Days: React.FC<Props> = ({
         (day: number) => {
             const CUSTOM_BACKGROUND_STYLES = {
                 color: "#FFFFFF",
-                backgroundColor: primaryColor,
+                backgroundColor: accentColor,
 
                 ":hover": {
-                    backgroundColor: primaryColor
+                    backgroundColor: accentColor
                 }
             };
             const CUSTOM_TEXT_STYLES = {
-                color: primaryColor
+                color: accentColor
             };
             const itemDate = `${calendarData.date.year()}-${calendarData.date.month() + 1}-${
                 day >= 10 ? day : "0" + day
@@ -167,7 +167,7 @@ const Days: React.FC<Props> = ({
             }
             return {};
         },
-        [activeDateData, calendarData.date, primaryColor]
+        [activeDateData, calendarData.date, accentColor]
     );
 
     const hoverDay = useCallback(
