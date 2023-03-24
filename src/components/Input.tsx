@@ -41,7 +41,7 @@ const Input: React.FC<Props> = (e: Props) => {
         }
         const classNameOverload = typeof inputClassName === "string" ? inputClassName : "";
         return `relative p-[10px] pl-[40px] w-full h-[40px] rounded-[3px] tracking-wide font-light text-sm placeholder-gray-400
-            border-[#C4C4C4] bg-white border-2
+            border-[#C4C4C4] bg-white 
             focus:border-[#0493F2] focus:ring-0
             hover:border-[#0493F2] hover:border-2 hover:cursor-pointer hover:bg-[#F5FBFF]
             hover:disabled:border-[#C4C4C4] hover:disabled:border-[#DDDDDD]
