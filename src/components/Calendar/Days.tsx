@@ -159,13 +159,13 @@ const Days: React.FC<Props> = ({
             const itemDate = `${calendarData.date.year()}-${calendarData.date.month() + 1}-${
                 day >= 10 ? day : "0" + day
             }`;
-            if (formatDate(dayjs()) === formatDate(dayjs(itemDate))) {
-                return CUSTOM_TEXT_STYLES;
-            }
             if (activeDateData(day).active) {
                 return CUSTOM_BACKGROUND_STYLES;
+            } else if (formatDate(dayjs()) === formatDate(dayjs(itemDate))) {
+                return CUSTOM_TEXT_STYLES;
+            } else {
+                return {};
             }
-            return {};
         },
         [activeDateData, calendarData.date, accentColor]
     );
