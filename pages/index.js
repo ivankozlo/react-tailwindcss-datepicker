@@ -16,7 +16,7 @@ export default function Playground() {
     const [separator] = useState("~");
     const [i18n] = useState("en");
     const [disabled] = useState(false);
-    const [inputClassName] = useState("bg-white");
+    const [inputClassName] = useState("bg-white text-red-500");
     const [containerClassName] = useState("");
     const [toggleClassName] = useState("");
     const [displayFormat] = useState("DD.MM.YYYY");
@@ -60,11 +60,11 @@ export default function Playground() {
                     toggleIcon={isEmpty => {
                         return isEmpty ? "Select Date" : "Clear";
                     }}
-                    classNames={"bg-white"}
+                    classNames={"bg-red"}
                     invalid={false}
                     invalidText={"Please specify the details"}
-                    emptyLabel={""}
-                    fillLabel={""}
+                    emptyLabel={"by"}
+                    fillLabel={"of"}
                 />
             </div>
         </div>

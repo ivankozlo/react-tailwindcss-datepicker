@@ -52,6 +52,13 @@ const Input: React.FC<Props> = (e: Props) => {
         `;
     }, [classNames, inputClassName, invalid]);
 
+    const getTextClassName = useCallback(() => {
+        const regex = /\btext\S*\b/g;
+        const classNameOverload = typeof inputClassName === "string" ? inputClassName : "";
+        const matches = inputClassName ? classNameOverload.match(regex) : "";
+        return matches ? matches.join(" ") : "";
+    }, [inputClassName]);
+
     useEffect(() => {
         const div = calendarContainer?.current;
         const input = inputRef.current;
@@ -194,7 +201,7 @@ const Input: React.FC<Props> = (e: Props) => {
                 {emptyLabel && inputText === "" && (
                     <span
                         className={`absolute text-[12px] left-[44px] top-[11px] ${
-                            disabled ? "text-[#C4C4C4]" : "text-[#8E8E8E]"
+                            disabled ? "text-[#C4C4C4]" : getTextClassName()
                         }`}
                     >
                         {emptyLabel}
@@ -202,7 +209,7 @@ const Input: React.FC<Props> = (e: Props) => {
                 )}
                 <div
                     className={`absolute flex flex-col top-0 text-[12px] left-[44px] ${
-                        disabled ? "text-[#C4C4C4]" : "text-[#1D1D1D]"
+                        disabled ? "text-[#C4C4C4]" : getTextClassName()
                     }`}
                 >
                     {fillLabel && inputText !== "" && (
