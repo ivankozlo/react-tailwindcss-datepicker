@@ -194,7 +194,7 @@ const Input: React.FC<Props> = (e: Props) => {
                 {emptyLabel && inputText === "" && (
                     <span
                         className={`absolute text-[12px] left-[44px] top-[11px] ${
-                            disabled ? "text-[#C4C4C4]" : "text-[#1D1D1D]"
+                            disabled ? "text-[#C4C4C4]" : "text-[#8E8E8E]"
                         }`}
                     >
                         {emptyLabel}
