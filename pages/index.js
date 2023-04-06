@@ -16,7 +16,7 @@ export default function Playground() {
     const [separator] = useState("~");
     const [i18n] = useState("en");
     const [disabled] = useState(false);
-    const [inputClassName] = useState("bg-white text-red-500");
+    const [inputClassName] = useState("bg-white text-red-500 fill-red-900");
     const [containerClassName] = useState("");
     const [toggleClassName] = useState("");
     const [displayFormat] = useState("DD.MM.YYYY");

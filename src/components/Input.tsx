@@ -58,6 +58,12 @@ const Input: React.FC<Props> = (e: Props) => {
         const matches = inputClassName ? classNameOverload.match(regex) : "";
         return matches ? matches.join(" ") : "";
     }, [inputClassName]);
+    const getIconClassName = useCallback(() => {
+        const regex = /\bfill\S*\b/g;
+        const classNameOverload = typeof inputClassName === "string" ? inputClassName : "";
+        const matches = inputClassName ? classNameOverload.match(regex) : "";
+        return matches ? matches.join(" ") : "";
+    }, [inputClassName]);
 
     useEffect(() => {
         const div = calendarContainer?.current;
@@ -183,12 +189,10 @@ const Input: React.FC<Props> = (e: Props) => {
                             viewBox="0 0 20 20"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
+                            className={getIconClassName() ? getIconClassName() : "fill-[#4F4F4F]"}
                         >
                             <g clipPath="url(#clip0_739_2084)">
-                                <path
-                                    d="M16.6667 2.50004H15.8334V0.833374H14.1667V2.50004H5.83342V0.833374H4.16675V2.50004H3.33341C2.41675 2.50004 1.66675 3.25004 1.66675 4.16671V17.5C1.66675 18.4167 2.41675 19.1667 3.33341 19.1667H16.6667C17.5834 19.1667 18.3334 18.4167 18.3334 17.5V4.16671C18.3334 3.25004 17.5834 2.50004 16.6667 2.50004ZM16.6667 17.5H3.33341V6.66671H16.6667V17.5Z"
-                                    fill="#4F4F4F"
-                                />
+                                <path d="M16.6667 2.50004H15.8334V0.833374H14.1667V2.50004H5.83342V0.833374H4.16675V2.50004H3.33341C2.41675 2.50004 1.66675 3.25004 1.66675 4.16671V17.5C1.66675 18.4167 2.41675 19.1667 3.33341 19.1667H16.6667C17.5834 19.1667 18.3334 18.4167 18.3334 17.5V4.16671C18.3334 3.25004 17.5834 2.50004 16.6667 2.50004ZM16.6667 17.5H3.33341V6.66671H16.6667V17.5Z" />
                             </g>
                             <defs>
                                 <clipPath id="clip0_739_2084">
