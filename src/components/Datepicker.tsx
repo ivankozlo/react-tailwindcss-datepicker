@@ -60,10 +60,14 @@ interface Props {
     fillLabel?: string;
     invalid?: boolean;
     invalidText?: string;
+    invalidColor?: string;
+    disabledColor?: string;
 }
 
 const Datepicker: React.FC<Props> = ({
     accentColor = "#D81825",
+    invalidColor = "#BF1521",
+    disabledColor = "#C4C4C4",
     value = null,
     onChange,
     showFooter = true,
@@ -273,7 +277,9 @@ const Datepicker: React.FC<Props> = ({
             emptyLabel,
             fillLabel,
             invalid,
-            invalidText
+            invalidText,
+            invalidColor,
+            disabledColor
         };
     }, [
         asSingle,
@@ -308,7 +314,9 @@ const Datepicker: React.FC<Props> = ({
         emptyLabel,
         fillLabel,
         invalid,
-        invalidText
+        invalidText,
+        invalidColor,
+        disabledColor
     ]);
 
     return (
@@ -326,7 +334,7 @@ const Datepicker: React.FC<Props> = ({
                 </p>
                 <Input setContextRef={setInputRef} />
                 {invalid && (
-                    <p className="text-[#BF1521] text-[12px] mt-[8px]">
+                    <p className="text-[12px] mt-[8px]" style={{ color: invalidColor }}>
                         {invalidText || "Please specify the details!"}
                     </p>
                 )}

@@ -16,7 +16,7 @@ export default function Playground() {
     const [separator] = useState("~");
     const [i18n] = useState("en");
     const [disabled] = useState(false);
-    const [inputClassName] = useState("bg-white text-red-500 fill-red-900");
+    const [inputClassName] = useState("bg-white text-red-500 fill-blue-300 text-xs");
     const [containerClassName] = useState("");
     const [toggleClassName] = useState("");
     const [displayFormat] = useState("DD.MM.YYYY");
@@ -40,6 +40,8 @@ export default function Playground() {
                 <Datepicker
                     value={value}
                     accentColor={accentColor}
+                    invalidColor={"#aabb00"}
+                    disabledColor={"999999"}
                     onChange={handleChange}
                     useRange={useRange}
                     showShortcuts={showShortcuts}
@@ -47,7 +49,7 @@ export default function Playground() {
                     placeholder={placeholder}
                     separator={separator}
                     i18n={i18n}
-                    disabled={disabled}
+                    disabled={false}
                     inputClassName={inputClassName}
                     containerClassName={containerClassName}
                     toggleClassName={toggleClassName}
@@ -62,9 +64,7 @@ export default function Playground() {
                     }}
                     classNames={"bg-red"}
                     invalid={false}
-                    invalidText={"Please specify the details"}
-                    emptyLabel={"by"}
-                    fillLabel={"of"}
+                    invalidText={"Please specify the sdsddds"}
                 />
             </div>
         </div>

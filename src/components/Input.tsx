@@ -20,7 +20,8 @@ const Input: React.FC<Props> = (e: Props) => {
         classNames,
         invalid,
         emptyLabel,
-        fillLabel
+        fillLabel,
+        invalidColor
     } = useContext(DatepickerContext);
 
     // UseRefs
@@ -47,13 +48,19 @@ const Input: React.FC<Props> = (e: Props) => {
             hover:disabled:border-[#C4C4C4] hover:disabled:border-[#DDDDDD]
             disabled:border-[#DDDDDD] disabled:cursor-not-allowed disabled:bg-[#F7F7F7]
             active:ring-0 active:border-[#0493F2] active:border-2
-            ${invalid && "border-[#BF1521]"}
             ${classNameOverload}
         `;
-    }, [classNames, inputClassName, invalid]);
+    }, [classNames, inputClassName]);
 
     const getTextClassName = useCallback(() => {
         const regex = /\btext\S*\b/g;
+        const classNameOverload = typeof inputClassName === "string" ? inputClassName : "";
+        const matches = inputClassName ? classNameOverload.match(regex) : "";
+        return matches ? matches.join(" ") : "";
+    }, [inputClassName]);
+
+    const getIconClassName = useCallback(() => {
+        const regex = /\bfill\S*\b/g;
         const classNameOverload = typeof inputClassName === "string" ? inputClassName : "";
         const matches = inputClassName ? classNameOverload.match(regex) : "";
         return matches ? matches.join(" ") : "";
@@ -138,9 +145,9 @@ const Input: React.FC<Props> = (e: Props) => {
                 style={
                     invalid
                         ? {
-                              borderColor: "#BF1521"
+                              borderColor: invalidColor
                           }
-                        : {}
+                        : { lineHeight: "20px" }
                 }
             />
             <div
@@ -151,11 +158,7 @@ const Input: React.FC<Props> = (e: Props) => {
                 }}
                 className="cursor-pointer pointer-events-none"
             >
-                <span
-                    className={`absolute p-0 m-0 top-[10px] left-[17px] ${
-                        disabled ? "text-[#C4C4C4]" : ""
-                    }`}
-                >
+                <span className={`absolute p-0 m-0 top-[10px] left-[17px] ${disabled ? "" : ""}`}>
                     {disabled ? (
                         <svg
                             width="20"
@@ -183,11 +186,10 @@ const Input: React.FC<Props> = (e: Props) => {
                             viewBox="0 0 20 20"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
-                            className={getTextClassName()}
                         >
                             <g clipPath="url(#clip0_739_2084)">
                                 <path
-                                    fill="currentColor"
+                                    className={getIconClassName()}
                                     d="M16.6667 2.50004H15.8334V0.833374H14.1667V2.50004H5.83342V0.833374H4.16675V2.50004H3.33341C2.41675 2.50004 1.66675 3.25004 1.66675 4.16671V17.5C1.66675 18.4167 2.41675 19.1667 3.33341 19.1667H16.6667C17.5834 19.1667 18.3334 18.4167 18.3334 17.5V4.16671C18.3334 3.25004 17.5834 2.50004 16.6667 2.50004ZM16.6667 17.5H3.33341V6.66671H16.6667V17.5Z"
                                 />
                             </g>
@@ -202,7 +204,7 @@ const Input: React.FC<Props> = (e: Props) => {
                 {emptyLabel && inputText === "" && (
                     <span
                         className={`absolute text-[12px] left-[44px] top-[11px] ${
-                            disabled ? "text-[#C4C4C4]" : getTextClassName()
+                            disabled ? "" : getTextClassName()
                         }`}
                     >
                         {emptyLabel}
@@ -210,7 +212,7 @@ const Input: React.FC<Props> = (e: Props) => {
                 )}
                 <div
                     className={`absolute flex flex-col top-0 text-[12px] left-[44px] ${
-                        disabled ? "text-[#C4C4C4]" : getTextClassName()
+                        disabled ? "" : getTextClassName()
                     }`}
                 >
                     {fillLabel && inputText !== "" && (
@@ -223,7 +225,10 @@ const Input: React.FC<Props> = (e: Props) => {
                     )}
                     {!fillLabel && inputText !== "" && (
                         <>
-                            <span className="absolute top-[9px] text-[15px] font-[400]">
+                            <span
+                                className="absolute top-[9px] text-[15px] font-[400]"
+                                style={{ lineHeight: "1.375rem" }}
+                            >
                                 {inputText}
                             </span>
                         </>
