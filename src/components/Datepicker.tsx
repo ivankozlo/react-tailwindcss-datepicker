@@ -61,13 +61,11 @@ interface Props {
     invalid?: boolean;
     invalidText?: string;
     invalidColor?: string;
-    disabledColor?: string;
 }
 
 const Datepicker: React.FC<Props> = ({
     accentColor = "#D81825",
     invalidColor = "#BF1521",
-    disabledColor = "#C4C4C4",
     value = null,
     onChange,
     showFooter = true,
@@ -278,8 +276,7 @@ const Datepicker: React.FC<Props> = ({
             fillLabel,
             invalid,
             invalidText,
-            invalidColor,
-            disabledColor
+            invalidColor
         };
     }, [
         asSingle,
@@ -315,8 +312,7 @@ const Datepicker: React.FC<Props> = ({
         fillLabel,
         invalid,
         invalidText,
-        invalidColor,
-        disabledColor
+        invalidColor
     ]);
 
     return (

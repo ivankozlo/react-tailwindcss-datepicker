@@ -51,7 +51,6 @@ interface DatepickerStore {
     emptyLabel?: string;
     fillLabel?: string;
     invalidColor?: string;
-    disabledColor?: string;
 }
 
 const DatepickerContext = createContext<DatepickerStore>({
@@ -100,8 +99,7 @@ const DatepickerContext = createContext<DatepickerStore>({
     invalid: false,
     emptyLabel: "",
     fillLabel: "",
-    invalidColor: "",
-    disabledColor: ""
+    invalidColor: ""
 });
 
 export default DatepickerContext;

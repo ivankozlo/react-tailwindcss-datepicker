@@ -16,7 +16,7 @@ export default function Playground() {
     const [separator] = useState("~");
     const [i18n] = useState("en");
     const [disabled] = useState(false);
-    const [inputClassName] = useState("bg-white text-red-500 fill-blue-300 text-xs");
+    const [inputClassName] = useState("bg-white text-red-500 fill-[#fff] text-xs");
     const [containerClassName] = useState("");
     const [toggleClassName] = useState("");
     const [displayFormat] = useState("DD.MM.YYYY");
@@ -40,8 +40,7 @@ export default function Playground() {
                 <Datepicker
                     value={value}
                     accentColor={accentColor}
-                    invalidColor={"#aabb00"}
-                    disabledColor={"999999"}
+                    invalidColor={"#aaa"}
                     onChange={handleChange}
                     useRange={useRange}
                     showShortcuts={showShortcuts}
@@ -63,7 +62,7 @@ export default function Playground() {
                         return isEmpty ? "Select Date" : "Clear";
                     }}
                     classNames={"bg-red"}
-                    invalid={false}
+                    invalid={true}
                     invalidText={"Please specify the sdsddds"}
                 />
             </div>

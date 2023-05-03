@@ -41,26 +41,18 @@ const Input: React.FC<Props> = (e: Props) => {
             return classNames?.input(input);
         }
         const classNameOverload = typeof inputClassName === "string" ? inputClassName : "";
-        return `relative p-[10px] pl-[40px] w-full h-[40px] rounded-[3px] tracking-wide font-light text-sm placeholder-gray-400
-            border-[#C4C4C4] bg-white 
-            focus:border-[#0493F2] focus:ring-0
-            hover:border-[#0493F2] hover:border-2 hover:cursor-pointer hover:bg-[#F5FBFF]
-            hover:disabled:border-[#C4C4C4] hover:disabled:border-[#DDDDDD]
-            disabled:border-[#DDDDDD] disabled:cursor-not-allowed disabled:bg-[#F7F7F7]
-            active:ring-0 active:border-[#0493F2] active:border-2
-            ${classNameOverload}
-        `;
+        return `relative p-[10px] pl-[40px] w-full h-[40px] rounded-[3px] tracking-wide font-light text-sm placeholder-gray-400 border-[#C4C4C4] bg-white focus:border-[#0493F2] focus:ring-0 hover:border-[#0493F2] hover:border-2 hover:cursor-pointer hover:bg-[#F5FBFF] hover:disabled:border-[#C4C4C4] hover:disabled:border-[#DDDDDD] disabled:border-[#DDDDDD] disabled:cursor-not-allowed disabled:bg-[#F7F7F7] active:ring-0 active:border-[#0493F2] active:border-2 ${classNameOverload}`;
     }, [classNames, inputClassName]);
 
     const getTextClassName = useCallback(() => {
-        const regex = /\btext\S*\b/g;
+        const regex = /text-(\[[^[\]]+\]|[\w-]+)/g;
         const classNameOverload = typeof inputClassName === "string" ? inputClassName : "";
         const matches = inputClassName ? classNameOverload.match(regex) : "";
         return matches ? matches.join(" ") : "";
     }, [inputClassName]);
 
     const getIconClassName = useCallback(() => {
-        const regex = /\bfill\S*\b/g;
+        const regex = /fill-(\[[^[\]]+\]|[\w-]+)/g;
         const classNameOverload = typeof inputClassName === "string" ? inputClassName : "";
         const matches = inputClassName ? classNameOverload.match(regex) : "";
         return matches ? matches.join(" ") : "";
