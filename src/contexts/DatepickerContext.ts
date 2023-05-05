@@ -58,7 +58,7 @@ interface DatepickerStore {
         activeText: string;
         background: string;
         border: string;
-        prevNextMonth: string;
+        otherMonth: string;
     };
 }
 
@@ -116,7 +116,7 @@ const DatepickerContext = createContext<DatepickerStore>({
         activeText: "",
         background: "",
         border: "",
-        prevNextMonth: ""
+        otherMonth: ""
     }
 });
 

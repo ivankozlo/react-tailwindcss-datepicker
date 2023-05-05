@@ -67,7 +67,7 @@ interface Props {
         hoverBgClass: string;
         background: string;
         border: string;
-        prevNextMonth: string;
+        otherMonth: string;
     };
 }
 
@@ -109,7 +109,7 @@ const Datepicker: React.FC<Props> = ({
         hoverBgClass: "hover:bg-[#f6f6f6]",
         background: "#fff",
         border: "#e8e8e8",
-        prevNextMonth: "#707070"
+        otherMonth: "#707070"
     }
 }) => {
     // Ref
