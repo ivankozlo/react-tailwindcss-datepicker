@@ -20,7 +20,6 @@ interface Props {
     accentColor?: string;
     value: DateValueType;
     onChange: (value: DateValueType, e?: HTMLInputElement | null | undefined) => void;
-    useRange?: boolean;
     showFooter?: boolean;
     showShortcuts?: boolean;
     configs?: {
@@ -61,11 +60,19 @@ interface Props {
     invalid?: boolean;
     invalidText?: string;
     invalidColor?: string;
+    calendarColors?: {
+        disabled: string;
+        activeText: string;
+        text: string;
+        hoverBgClass: string;
+        background: string;
+        border: string;
+    };
 }
 
 const Datepicker: React.FC<Props> = ({
-    accentColor = "#D81825",
-    invalidColor = "#BF1521",
+    accentColor = "",
+    invalidColor = "",
     value = null,
     onChange,
     showFooter = true,
@@ -93,7 +100,15 @@ const Datepicker: React.FC<Props> = ({
     emptyLabel = "",
     fillLabel = "",
     invalid = false,
-    invalidText = ""
+    invalidText = "",
+    calendarColors = {
+        disabled: "#aaa",
+        activeText: "#fff",
+        text: "#fff",
+        hoverBgClass: "hover:bg-[#eee]",
+        background: "#000",
+        border: "#ccc"
+    }
 }) => {
     // Ref
     const containerRef = useRef<HTMLDivElement>(null);
@@ -276,7 +291,8 @@ const Datepicker: React.FC<Props> = ({
             fillLabel,
             invalid,
             invalidText,
-            invalidColor
+            invalidColor,
+            calendarColors
         };
     }, [
         asSingle,
@@ -312,7 +328,8 @@ const Datepicker: React.FC<Props> = ({
         fillLabel,
         invalid,
         invalidText,
-        invalidColor
+        invalidColor,
+        calendarColors
     ]);
 
     return (
@@ -338,7 +355,13 @@ const Datepicker: React.FC<Props> = ({
                     className="transition-all ease-out duration-300 absolute z-10 mt-[1px] text-sm lg:text-xs 2xl:text-sm translate-y-4 opacity-0 hidden"
                     ref={calendarContainerRef}
                 >
-                    <div className="mt-2.5 shadow-sm border border-[#DDDDDD] py-0.5 bg-white rounded-[12px]">
+                    <div
+                        className="mt-2.5 shadow-sm border py-0.5 rounded-[12px]"
+                        style={{
+                            background: calendarColors?.background,
+                            borderColor: calendarColors?.border
+                        }}
+                    >
                         <div className="flex flex-col lg:flex-row">
                             <div
                                 className={

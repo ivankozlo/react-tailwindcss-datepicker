@@ -11,9 +11,12 @@ interface Props {
 }
 
 const Years: React.FC<Props> = ({ selectedYear, startYear, clickYear }) => {
-    const { accentColor } = useContext(DatepickerContext);
+    const { accentColor, calendarColors } = useContext(DatepickerContext);
     const SELECTED_YEAR_STYLE = {
         color: accentColor
+    };
+    const INACTIVE_STYPE = {
+        color: calendarColors?.text
     };
     return (
         <div className="w-full flex flex-row">
@@ -23,10 +26,8 @@ const Years: React.FC<Props> = ({ selectedYear, startYear, clickYear }) => {
                     onClick={() => {
                         clickYear(item);
                     }}
-                    className={
-                        "cursor-pointer text-[14px] select-none text-[#707070] p-2 font-[600] rounded-[6px] hover:bg-[#F7F7F7]"
-                    }
-                    style={item === selectedYear ? SELECTED_YEAR_STYLE : {}}
+                    className={`cursor-pointer text-[14px] select-none text-[#707070] p-2 font-[600] rounded-[6px] ${calendarColors?.hoverBgClass}`}
+                    style={item === selectedYear ? SELECTED_YEAR_STYLE : INACTIVE_STYPE}
                 >
                     <>{item}</>
                 </div>

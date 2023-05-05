@@ -46,7 +46,8 @@ const Calendar: React.FC<Props> = ({
         asSingle,
         i18n,
         startWeekOn,
-        input
+        input,
+        calendarColors
     } = useContext(DatepickerContext);
     loadLanguageModule(i18n);
 
@@ -211,9 +212,15 @@ const Calendar: React.FC<Props> = ({
 
     return (
         <div className="w-full md:w-[297px] md:min-w-[297px]">
-            <div className="flex items-center space-x-1.5 border-b border-[#DDDDDD] px-2 py-1.5">
+            <div
+                className="flex items-center space-x-1.5 border-b px-2 py-1.5"
+                style={{ borderColor: calendarColors?.border }}
+            >
                 <div className="flex flex-1 items-center justify-center">
-                    <div className="w-full flex justify-center text-[20px] leading-[25px] select-none py-[5px] font-[600]">
+                    <div
+                        className="w-full flex justify-center text-[20px] leading-[25px] select-none py-[5px] font-[600]"
+                        style={{ color: calendarColors?.text }}
+                    >
                         {calendarData.date.locale(i18n).format("MMMM")}
                     </div>
                 </div>
@@ -253,7 +260,10 @@ const Calendar: React.FC<Props> = ({
                     )}
                 </div>
             )}
-            <div className="flex items-center border-t border-[#DDDDDD] px-2 py-1.5">
+            <div
+                className="flex items-center border-t px-2 py-1.5"
+                style={{ borderColor: calendarColors?.border }}
+            >
                 <div className="flex flex-1 items-center justify-center">
                     <div className="w-full flex justify-between leading-[25px] py-[10px]">
                         <div

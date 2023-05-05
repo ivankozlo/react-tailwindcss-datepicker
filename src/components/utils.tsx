@@ -51,6 +51,7 @@ export const CloseIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => {
 };
 
 export const ChevronLeftIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => {
+    const { calendarColors } = useContext(DatepickerContext);
     return (
         <svg
             className={className}
@@ -60,12 +61,18 @@ export const ChevronLeftIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) 
             strokeWidth={1.5}
             stroke="currentColor"
         >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+                style={{ color: calendarColors?.text }}
+            />
         </svg>
     );
 };
 
 export const ChevronUpIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => {
+    const { calendarColors } = useContext(DatepickerContext);
     return (
         <svg
             className={className}
@@ -76,12 +83,18 @@ export const ChevronUpIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) =>
             stroke="currentColor"
             transform="rotate(90)"
         >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+                style={{ color: calendarColors?.text }}
+            />
         </svg>
     );
 };
 
 export const ChevronDownIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => {
+    const { calendarColors } = useContext(DatepickerContext);
     return (
         <svg
             className={className}
@@ -92,7 +105,12 @@ export const ChevronDownIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) 
             stroke="currentColor"
             transform="rotate(270)"
         >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+                style={{ color: calendarColors?.text }}
+            />
         </svg>
     );
 };
@@ -117,6 +135,7 @@ export const DoubleChevronLeftIcon: React.FC<IconProps> = ({ className = "w-6 h-
 };
 
 export const ChevronRightIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => {
+    const { calendarColors } = useContext(DatepickerContext);
     return (
         <svg
             className={className}
@@ -126,7 +145,12 @@ export const ChevronRightIcon: React.FC<IconProps> = ({ className = "w-6 h-6" })
             strokeWidth={1.5}
             stroke="currentColor"
         >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                style={{ color: calendarColors?.text }}
+            />
         </svg>
     );
 };
@@ -198,29 +222,28 @@ export const RoundedButton: React.FC<Button> = ({
     roundedFull = false,
     selected = false
 }) => {
+    const { accentColor, calendarColors } = useContext(DatepickerContext);
     // Functions
     const getClassName = useCallback(() => {
         const defaultClass = !roundedFull
-            ? "w-full text-[14px] tracking-wide select-none px-3 rounded-md focus:ring-1 hover:bg-[#F7F7F7]"
-            : "hover:bg-[#F7F7F7] rounded-full p-[0.45rem] focus:ring-0";
-        return `${defaultClass}`;
-    }, [roundedFull]);
+            ? "w-full text-[14px] tracking-wide select-none px-3 rounded-md focus:ring-1"
+            : "rounded-full p-[0.45rem] focus:ring-0";
+        return `${defaultClass}, ${calendarColors?.hoverBgClass}`;
+    }, [calendarColors?.hoverBgClass, roundedFull]);
 
-    const { accentColor } = useContext(DatepickerContext);
-    const CUSTOM_STYLES = {
-        color: "#FFFFFF",
-        backgroundColor: accentColor,
-
-        ":hover": {
-            backgroundColor: accentColor
-        }
+    const ACTIVE_STYLE = {
+        color: calendarColors?.activeText,
+        backgroundColor: accentColor
+    };
+    const INACTIVE_STYLE = {
+        color: calendarColors?.text
     };
     return (
         <button
             type="button"
             className={getClassName()}
             onClick={onClick}
-            style={selected ? CUSTOM_STYLES : {}}
+            style={selected ? ACTIVE_STYLE : INACTIVE_STYLE}
         >
             {children}
         </button>

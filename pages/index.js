@@ -16,13 +16,13 @@ export default function Playground() {
     const [separator] = useState("~");
     const [i18n] = useState("en");
     const [disabled] = useState(false);
-    const [inputClassName] = useState("bg-white text-red-500 fill-[#fff] text-xs");
+    const [inputClassName] = useState("fill-[#000]");
     const [containerClassName] = useState("");
     const [toggleClassName] = useState("");
     const [displayFormat] = useState("DD.MM.YYYY");
     const [readOnly] = useState(true);
-    const [minDate] = useState("2023-03-22");
-    const [maxDate] = useState("");
+    const [minDate] = useState("2023-05-3");
+    const [maxDate] = useState("2023-05-22");
     const [disabledDates] = useState([]);
     const [startWeekOn] = useState("mon");
 
@@ -40,7 +40,7 @@ export default function Playground() {
                 <Datepicker
                     value={value}
                     accentColor={accentColor}
-                    invalidColor={"#aaa"}
+                    invalidColor={"#000"}
                     onChange={handleChange}
                     useRange={useRange}
                     showShortcuts={showShortcuts}
@@ -49,11 +49,11 @@ export default function Playground() {
                     separator={separator}
                     i18n={i18n}
                     disabled={false}
-                    inputClassName={inputClassName}
+                    inputClassName={"fill-[#000]"}
                     containerClassName={containerClassName}
                     toggleClassName={toggleClassName}
                     displayFormat={displayFormat}
-                    readOnly={readOnly}
+                    readOnly={false}
                     minDate={minDate}
                     maxDate={maxDate}
                     disabledDates={disabledDates}

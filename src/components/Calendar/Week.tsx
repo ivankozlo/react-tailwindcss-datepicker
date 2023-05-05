@@ -6,7 +6,7 @@ import DatepickerContext from "../../contexts/DatepickerContext";
 import { loadLanguageModule, shortString, ucFirst } from "../../helpers";
 
 const Week: React.FC = () => {
-    const { i18n, startWeekOn } = useContext(DatepickerContext);
+    const { i18n, startWeekOn, calendarColors } = useContext(DatepickerContext);
     loadLanguageModule(i18n);
     const startDateModifier = useMemo(() => {
         if (startWeekOn) {
@@ -37,7 +37,8 @@ const Week: React.FC = () => {
             {DAYS.map(item => (
                 <div
                     key={item}
-                    className="tracking-wide font-[600] select-none text-[12px] text-[#1D1D1D] text-center"
+                    className="tracking-wide font-[600] select-none text-[12px] text-center"
+                    style={{ color: calendarColors?.text }}
                 >
                     {ucFirst(
                         shortString(
