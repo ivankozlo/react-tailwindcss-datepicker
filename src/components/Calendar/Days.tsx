@@ -186,7 +186,7 @@ const Days: React.FC<Props> = ({
                     disabled={isDateDisabled(item, "previous")}
                     className={`flex items-center justify-center text-[14px] select-none w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] rounded-[6px] ${calendarColors?.hoverBgClass}`}
                     onClick={() => onClickPreviousDays(item)}
-                    style={{ color: calendarColors?.disabled }}
+                    style={{ color: calendarColors?.prevNextMonth }}
                 >
                     {item}
                 </button>
@@ -217,7 +217,7 @@ const Days: React.FC<Props> = ({
                         onClickNextDays(item);
                     }}
                     style={{
-                        color: calendarColors?.disabled
+                        color: calendarColors?.prevNextMonth
                     }}
                 >
                     {item}

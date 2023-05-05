@@ -67,6 +67,7 @@ interface Props {
         hoverBgClass: string;
         background: string;
         border: string;
+        prevNextMonth: string;
     };
 }
 
@@ -102,12 +103,13 @@ const Datepicker: React.FC<Props> = ({
     invalid = false,
     invalidText = "",
     calendarColors = {
-        disabled: "#aaa",
+        disabled: "#ddd",
         activeText: "#fff",
-        text: "#fff",
-        hoverBgClass: "hover:bg-[#eee]",
-        background: "#000",
-        border: "#ccc"
+        text: "#1d1d1d",
+        hoverBgClass: "hover:bg-[#f6f6f6]",
+        background: "#fff",
+        border: "#e8e8e8",
+        prevNextMonth: "#707070"
     }
 }) => {
     // Ref

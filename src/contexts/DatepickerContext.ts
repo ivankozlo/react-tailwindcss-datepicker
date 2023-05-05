@@ -58,6 +58,7 @@ interface DatepickerStore {
         activeText: string;
         background: string;
         border: string;
+        prevNextMonth: string;
     };
 }
 
@@ -114,7 +115,8 @@ const DatepickerContext = createContext<DatepickerStore>({
         hoverBgClass: "",
         activeText: "",
         background: "",
-        border: ""
+        border: "",
+        prevNextMonth: ""
     }
 });
 
