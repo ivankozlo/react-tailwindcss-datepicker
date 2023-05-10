@@ -60,7 +60,7 @@ interface Props {
     invalid?: boolean;
     invalidText?: string;
     invalidColor?: string;
-    calendarColors?: {
+    calendarColors: {
         disabled: string;
         activeText: string;
         text: string;
@@ -360,8 +360,8 @@ const Datepicker: React.FC<Props> = ({
                     <div
                         className="mt-2.5 shadow-sm border py-0.5 rounded-[12px]"
                         style={{
-                            background: calendarColors?.background,
-                            borderColor: calendarColors?.border
+                            background: calendarColors.background,
+                            borderColor: calendarColors.border
                         }}
                     >
                         <div className="flex flex-col lg:flex-row">

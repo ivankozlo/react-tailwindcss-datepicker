@@ -51,7 +51,7 @@ interface DatepickerStore {
     emptyLabel?: string;
     fillLabel?: string;
     invalidColor?: string;
-    calendarColors?: {
+    calendarColors: {
         disabled: string;
         text: string;
         hoverBgClass: string;

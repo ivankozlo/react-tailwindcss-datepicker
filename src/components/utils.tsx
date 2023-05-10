@@ -65,7 +65,7 @@ export const ChevronLeftIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) 
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 d="M15.75 19.5L8.25 12l7.5-7.5"
-                style={{ color: calendarColors?.text }}
+                style={{ color: calendarColors.text }}
             />
         </svg>
     );
@@ -87,7 +87,7 @@ export const ChevronUpIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) =>
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 d="M15.75 19.5L8.25 12l7.5-7.5"
-                style={{ color: calendarColors?.text }}
+                style={{ color: calendarColors.text }}
             />
         </svg>
     );
@@ -109,7 +109,7 @@ export const ChevronDownIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) 
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 d="M15.75 19.5L8.25 12l7.5-7.5"
-                style={{ color: calendarColors?.text }}
+                style={{ color: calendarColors.text }}
             />
         </svg>
     );
@@ -149,7 +149,7 @@ export const ChevronRightIcon: React.FC<IconProps> = ({ className = "w-6 h-6" })
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                style={{ color: calendarColors?.text }}
+                style={{ color: calendarColors.text }}
             />
         </svg>
     );
@@ -228,15 +228,15 @@ export const RoundedButton: React.FC<Button> = ({
         const defaultClass = !roundedFull
             ? "w-full text-[14px] tracking-wide select-none px-3 rounded-md focus:ring-1"
             : "rounded-full p-[0.45rem] focus:ring-0";
-        return `${defaultClass}, ${calendarColors?.hoverBgClass}`;
-    }, [calendarColors?.hoverBgClass, roundedFull]);
+        return `${defaultClass}, ${calendarColors.hoverBgClass}`;
+    }, [calendarColors.hoverBgClass, roundedFull]);
 
     const ACTIVE_STYLE = {
-        color: calendarColors?.activeText,
+        color: calendarColors.activeText,
         backgroundColor: accentColor
     };
     const INACTIVE_STYLE = {
-        color: calendarColors?.text
+        color: calendarColors.text
     };
     return (
         <button

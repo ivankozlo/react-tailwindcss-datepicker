@@ -38,7 +38,7 @@ const Week: React.FC = () => {
                 <div
                     key={item}
                     className="tracking-wide font-[600] select-none text-[12px] text-center"
-                    style={{ color: calendarColors?.text }}
+                    style={{ color: calendarColors.text }}
                 >
                     {ucFirst(
                         shortString(

@@ -44,9 +44,9 @@ const Days: React.FC<Props> = ({
     );
 
     const hoverClassByDay = useCallback(() => {
-        const className = calendarColors?.hoverBgClass;
+        const className = calendarColors.hoverBgClass;
         return className;
-    }, [calendarColors?.hoverBgClass]);
+    }, [calendarColors.hoverBgClass]);
 
     const isDateTooEarly = useCallback(
         (day: number, type: string) => {
@@ -144,7 +144,7 @@ const Days: React.FC<Props> = ({
     const buttonStyles = useCallback(
         (day: number, type: string) => {
             const CUSTOM_BACKGROUND_STYLES = {
-                color: calendarColors?.activeText,
+                color: calendarColors.activeText,
                 backgroundColor: accentColor
             };
             const CUSTOM_TEXT_STYLES = {
@@ -160,16 +160,16 @@ const Days: React.FC<Props> = ({
                 return CUSTOM_TEXT_STYLES;
             } else if (isDateDisabled(day, type)) {
                 return {
-                    color: calendarColors?.disabled
+                    color: calendarColors.disabled
                 };
             } else {
-                return { color: calendarColors?.text };
+                return { color: calendarColors.text };
             }
         },
         [
-            calendarColors?.activeText,
-            calendarColors?.disabled,
-            calendarColors?.text,
+            calendarColors.activeText,
+            calendarColors.disabled,
+            calendarColors.text,
             accentColor,
             calendarData.date,
             activeDateData,
@@ -184,9 +184,9 @@ const Days: React.FC<Props> = ({
                     type="button"
                     key={index}
                     disabled={isDateDisabled(item, "previous")}
-                    className={`flex items-center justify-center text-[14px] select-none w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] rounded-[6px] ${calendarColors?.hoverBgClass}`}
+                    className={`flex items-center justify-center text-[14px] select-none w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] rounded-[6px] ${calendarColors.hoverBgClass}`}
                     onClick={() => onClickPreviousDays(item)}
-                    style={{ color: calendarColors?.otherMonth, opacity: 0.5 }}
+                    style={{ color: calendarColors.otherMonth, opacity: 0.5 }}
                 >
                     {item}
                 </button>
@@ -212,12 +212,12 @@ const Days: React.FC<Props> = ({
                     type="button"
                     key={index}
                     disabled={isDateDisabled(index, "next")}
-                    className={`flex items-center text-[14px] justify-center w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] select-none rounded-[6px] ${calendarColors?.hoverBgClass}`}
+                    className={`flex items-center text-[14px] justify-center w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] select-none rounded-[6px] ${calendarColors.hoverBgClass}`}
                     onClick={() => {
                         onClickNextDays(item);
                     }}
                     style={{
-                        color: calendarColors?.otherMonth,
+                        color: calendarColors.otherMonth,
                         opacity: 0.5
                     }}
                 >
