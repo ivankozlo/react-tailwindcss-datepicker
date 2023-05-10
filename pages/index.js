@@ -22,7 +22,7 @@ export default function Playground() {
     const [displayFormat] = useState("DD.MM.YYYY");
     const [readOnly] = useState(true);
     const [minDate] = useState("2023-05-3");
-    const [maxDate] = useState("2023-05-22");
+    const [maxDate] = useState("2023-06-22");
     const [disabledDates] = useState([]);
     const [startWeekOn] = useState("mon");
 

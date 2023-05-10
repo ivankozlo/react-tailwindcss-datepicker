@@ -214,12 +214,12 @@ const Calendar: React.FC<Props> = ({
         <div className="w-full md:w-[297px] md:min-w-[297px]">
             <div
                 className="flex items-center space-x-1.5 border-b px-2 py-1.5"
-                style={{ borderColor: calendarColors.border }}
+                style={{ borderColor: calendarColors?.border }}
             >
                 <div className="flex flex-1 items-center justify-center">
                     <div
                         className="w-full flex justify-center text-[20px] leading-[25px] select-none py-[5px] font-[600]"
-                        style={{ color: calendarColors.text }}
+                        style={{ color: calendarColors?.text }}
                     >
                         {calendarData.date.locale(i18n).format("MMMM")}
                     </div>
@@ -262,7 +262,7 @@ const Calendar: React.FC<Props> = ({
             )}
             <div
                 className="flex items-center border-t px-2 py-1.5"
-                style={{ borderColor: calendarColors.border }}
+                style={{ borderColor: calendarColors?.border }}
             >
                 <div className="flex flex-1 items-center justify-center">
                     <div className="w-full flex justify-between leading-[25px] py-[10px]">
